@@ -1,21 +1,28 @@
-# KubeCI
-KubeCI engine by AppsCode is a Kubernetes native workflow engine.
+[![Slack](https://slack.appscode.com/badge.svg)](https://slack.appscode.com)
+[![Twitter](https://img.shields.io/twitter/follow/thekubeci.svg?style=social&logo=twitter&label=Follow)](https://twitter.com/intent/follow?screen_name=TheKubeCI)
 
-From here you can learn all about KubeCI engine's architecture and how to deploy and use KubeCI.
+[![Throughput Graph](https://graphs.waffle.io/kube-ci/project/throughput.svg)](https://waffle.io/kube-ci/project/metrics/throughput)
 
-- [Concepts](/docs/concepts/). Concepts explain some significant aspect of KubeCI engine. This is where you can learn about what KubeCI engine does and how it does it.
+# KubeCI Docs
 
-- [Setup](/docs/setup/). Setup contains instructions for installing the KubeCI engine in various cloud providers.
+This repository documents various aspects of KubeCI poject.
 
-- [Guides](/docs/guides/). Guides show you how to perform tasks with KubeCI engine.
+## Installation
+To install KubeCI engine and addons, please follow the guide [here](https://github.com/kube-ci/docs/blob/master/docs/setup/install.md).
 
-- [Reference](/docs/reference/). Detailed exhaustive lists of command-line options, configuration options, API definitions, and procedures.
+## Using KubeCI
+Want to learn how to use KubeCI? Please start [here](https://github.com/kube-ci/docs/blob/master/docs/guides/README.md).
 
-We're always looking for help improving our documentation, so please don't hesitate to [file an issue](https://github.com/kube-ci/project/issues/new) if you see some problem. Or better yet, submit your own [contributions](/docs/CONTRIBUTING.md) to help
-make our docs better.
+## Contribution guidelines
+Want to help improve KubeCI? Please start [here](https://github.com/kube-ci/docs/blob/master/docs/CONTRIBUTING.md).
+
+---
+
+**KubeCI binaries collects anonymous usage statistics to help us learn how the software is being used and how we can improve it. To disable stats collection, run the operator with the flag** `--enable-analytics=false`.
 
 ---
 
-**KubeCI engine binaries collects anonymous usage statistics to help us learn how the software is being used and how we can improve it. To disable stats collection, run the operator with the flag** `--enable-analytics=false`.
+## Support
+We use Slack for public discussions. To chit chat with us or the rest of the community, join us in the [AppsCode Slack team](https://appscode.slack.com/messages/kube-ci/) channel `#kube-ci`. To sign up, use our [Slack inviter](https://slack.appscode.com/).
 
----
+If you have found a bug with KubeCI or want to request for new features, please [file an issue](https://github.com/kube-ci/project/issues/new).
