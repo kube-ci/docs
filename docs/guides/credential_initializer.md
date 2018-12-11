@@ -6,6 +6,13 @@ This tutorial will show you how to initialize docker and git credentials using s
 
 Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/install.md).
 
+To keep things isolated, we are going to use a separate namespace called `demo` throughout this tutorial.
+
+```console
+$ kubectl create ns demo
+namespace/demo created
+```
+
 ## Create Secrets
 
 First, create secrets with docker and git credentials. You need to specify this secret in workflow's service-account in order to configure credential-initializer.
@@ -60,7 +67,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: wf-sa
-  namespace: default
+  namespace: demo
 secrets:
 - name: test-docker-basic
 - name: test-git-ssh
@@ -88,13 +95,13 @@ apiVersion: engine.kube.ci/v1alpha1
 kind: Workflow
 metadata:
   name: sample-workflow
-  namespace: default
+  namespace: demo
 spec:
   triggers:
   - apiVersion: v1
     kind: ConfigMap
     resource: configmaps
-    namespace: default
+    namespace: demo
     name: sample-config
     onCreateOrUpdate: true
     onDelete: false
@@ -123,13 +130,13 @@ trigger.extensions.kube.ci/sample-trigger created
 Whenever a workflow is triggered, a workplan is created and respective pods are scheduled.
 
 ```console
-$ kubectl get workplan -l workflow=sample-workflow
+$ kubectl get workplan -l workflow=sample-workflow -n demo
 NAME                    CREATED AT
 sample-workflow-xj9gl   13s
 ```
 
 ```console
-$ kubectl get pods -l workplan=sample-workflow-xj9gl
+$ kubectl get pods -l workplan=sample-workflow-xj9gl -n demo
 NAME                      READY   STATUS      RESTARTS   AGE
 sample-workflow-xj9gl-0   0/1     Completed   0          29s
 ```
@@ -139,7 +146,7 @@ sample-workflow-xj9gl-0   0/1     Completed   0          29s
 The `step-ls-home` prints the contents of `HOME` directory.
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/default/workplanlogs/sample-workflow-xj9gl?step=step-ls-home'
+$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-xj9gl?step=step-ls-home'
 total 8
 drwxr-xr-x    4 root     root           120 Oct 30 04:53 .
 drwxr-xr-x    4 root     root          4096 Oct 30 04:53 ..
@@ -168,15 +175,8 @@ Here, we can see that, `HOME` directory is populated with docker and git configs
 ## Cleanup
 
 ```console
-$ kubectl delete -f docs/examples/credential-initializer/
-serviceaccount "wf-sa" deleted
-clusterrole.rbac.authorization.k8s.io "wf-role" deleted
-rolebinding.rbac.authorization.k8s.io "wf-role-binding" deleted
-clusterrolebinding.rbac.authorization.k8s.io "operator-role-binding" deleted
-secret "test-docker-basic" deleted
-secret "test-git-ssh" deleted
-workflow.engine.kube.ci "sample-workflow" deleted
-Error from server (NotFound): error when deleting "docs/examples/credential-initializer/trigger.yaml": the server could not find the requested resource
+$ kubectl delete ns demo
+namespace "demo" deleted
 ```
 
 ## Acknowledgement

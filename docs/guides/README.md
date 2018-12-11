@@ -14,4 +14,5 @@ Guides show you how to perform tasks with KubeCI engine.
 - Learn how initialize Docker and Git credentials [here](/docs/guides/credential_initializer.md).
 - Learn how to use workplan-logs CLI and workplan-viewer web-ui [here](/docs/guides/workplan_status_logs.md).
 - Learn how to build container from source using [dind](/docs/guides/build-dind.md), [kaniko](/docs/guides/build-kaniko.md), and [img](/docs/guides/build-img.md).
+- Learn how to deploy your application from source using a single workflow [here](/docs/guides/deploy.md).
 - Step by step guide to run go-tests for a Github pull-request and set commit status [here](/docs/guides/github_pr.md).

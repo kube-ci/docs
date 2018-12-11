@@ -6,6 +6,13 @@ This tutorial will show you how to use KubeCI engine and [Git API server](https:
 
 Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/install.md). Also, install git-apiserver following the steps [here](https://github.com/kube-ci/git-apiserver).
 
+To keep things isolated, we are going to use a separate namespace called `demo` throughout this tutorial.
+
+```console
+$ kubectl create ns demo
+namespace/demo created
+```
+
 ## Configure Github Webhook
 
 First, configure github webhook to send POST request of events to your Kubernetes apiserver. Also enable events for pull-requests and disable SSL verification.
@@ -26,7 +33,7 @@ apiVersion: git.kube.ci/v1alpha1
 kind: Repository
 metadata:
   name: kubeci-gpig
-  namespace: default
+  namespace: demo
 spec:
   host: github
   owner: tamalsaha
@@ -69,13 +76,13 @@ apiVersion: engine.kube.ci/v1alpha1
 kind: Workflow
 metadata:
   name: sample-workflow
-  namespace: default
+  namespace: demo
 spec:
   triggers:
   - apiVersion: git.kube.ci/v1alpha1
     kind: PullRequest
     resource: pullrequests
-    namespace: default
+    namespace: demo
     selector:
       matchLabels:
         repository: kubeci-gpig
@@ -120,3 +127,10 @@ Forwarding from [::1]:9090 -> 9090
 ## Trigger Workflow
 
 To trigger the workflow, create a pull request in your repository and set `ok-to-test` label on it. This will send a POST request to Kubernetes apiserver. Git-apiserver controller will respond to it and create a `PullRequest` CRD with with `repository`, `state` and `ok-to-test` labels, which will then trigger the workflow.
+
+## Cleanup
+
+```console
+$ kubectl delete ns demo
+namespace "demo" deleted
+```

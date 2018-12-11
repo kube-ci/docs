@@ -6,6 +6,13 @@ This tutorial will show you how to use KubeCI engine to configure a Workflow con
 
 Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/install.md).
 
+To keep things isolated, we are going to use a separate namespace called `demo` throughout this tutorial.
+
+```console
+$ kubectl create ns demo
+namespace/demo created
+```
+
 ## Configure RBAC
 
 You need to specify a service-account in `spec.serviceAccount` to ensure RBAC for the workflow. This service-account along with operator's service-account must have `list` and `watch` permissions for the resources specified in `spec.triggers`.
@@ -32,13 +39,13 @@ apiVersion: engine.kube.ci/v1alpha1
 kind: Workflow
 metadata:
   name: sample-workflow
-  namespace: default
+  namespace: demo
 spec:
   triggers:
   - apiVersion: v1
     kind: ConfigMap
     resource: configmaps
-    namespace: default
+    namespace: demo
     name: sample-config
     onCreateOrUpdate: true
     onDelete: false
@@ -75,7 +82,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: sample-config
-  namespace: default
+  namespace: demo
 data:
   example.property.1: hello
   example.property.2: world
@@ -84,13 +91,13 @@ data:
 Whenever a workflow is triggered, a workplan is created and respective pods are scheduled.
 
 ```console
-$ kubectl get workplan -l workflow=sample-workflow
+$ kubectl get workplan -l workflow=sample-workflow -n demo
 NAME                    CREATED AT
 sample-workflow-sg9h4   24s
 ```
 
 ```console
-$ kubectl get pods -l workplan=sample-workflow-sg9h4
+$ kubectl get pods -l workplan=sample-workflow-sg9h4 -n demo
 NAME                      READY   STATUS      RESTARTS   AGE
 sample-workflow-sg9h4-0   0/1     Completed   0          58s
 ```
@@ -100,7 +107,7 @@ sample-workflow-sg9h4-0   0/1     Completed   0          58s
 To know the current phase of execution, you need see the workplan status.
 
 ```yaml
-$ kubectl get workplan sample-workflow-sg9h4 -o yaml
+$ kubectl get workplan sample-workflow-sg9h4 -o yaml -n demo
 apiVersion: engine.kube.ci/v1alpha1
 kind: Workplan
 metadata:
@@ -110,7 +117,7 @@ metadata:
   labels:
     workflow: sample-workflow
   name: sample-workflow-sg9h4
-  namespace: default
+  namespace: demo
   ownerReferences:
   - apiVersion: engine.kube.ci/v1alpha1
     blockOwnerDeletion: true
@@ -118,7 +125,7 @@ metadata:
     name: sample-workflow
     uid: 6948b0f8-e31d-11e8-a7e0-080027868e9e
   resourceVersion: "7738"
-  selfLink: /apis/engine.kube.ci/v1alpha1/namespaces/default/workplans/sample-workflow-sg9h4
+  selfLink: /apis/engine.kube.ci/v1alpha1/namespaces/demo/workplans/sample-workflow-sg9h4
   uid: 82e7195a-e31d-11e8-a7e0-080027868e9e
 spec:
   tasks:
@@ -148,46 +155,43 @@ spec:
       apiVersion: v1
       kind: ConfigMap
       name: sample-config
-      namespace: default
+      namespace: demo
     resourceGeneration: 0$11733787535907091283
   workflow: sample-workflow
 status:
   phase: Succeeded
   reason: All tasks completed successfully
   stepTree:
-  - - ContainerState:
+  - - containerState:
         terminated:
           containerID: docker://28dabd37dec53e4e06f16fcbcd0a8e4594882ae3f2cdfa85db44e8ed065c933b
           exitCode: 0
           finishedAt: 2018-11-08T06:14:28Z
           reason: Completed
           startedAt: 2018-11-08T06:14:28Z
-      Name: step-echo
-      Namespace: default
-      PodName: sample-workflow-sg9h4-0
-      Status: Terminated
-  - - ContainerState:
+      name: step-echo
+      podName: sample-workflow-sg9h4-0
+      status: Terminated
+  - - containerState:
         terminated:
           containerID: docker://e9a28c2577403ef1ef68ad02dce4b573af9471f44da1dd9beca30460bb2ee654
           exitCode: 0
           finishedAt: 2018-11-08T06:14:48Z
           reason: Completed
           startedAt: 2018-11-08T06:14:38Z
-      Name: step-wait
-      Namespace: default
-      PodName: sample-workflow-sg9h4-0
-      Status: Terminated
-  - - ContainerState:
+      name: step-wait
+      podName: sample-workflow-sg9h4-0
+      status: Terminated
+  - - containerState:
         terminated:
           containerID: docker://f994e704fc6a81d66590d6ce2ce0e08824d74968b5c9ae4f1f56cbfc715c0d38
           exitCode: 0
           finishedAt: 2018-11-08T06:14:59Z
           reason: Completed
           startedAt: 2018-11-08T06:14:59Z
-      Name: cleanup-step
-      Namespace: default
-      PodName: sample-workflow-sg9h4-0
-      Status: Terminated
+      name: cleanup-step
+      podName: sample-workflow-sg9h4-0
+      status: Terminated
   taskIndex: -1
 ```
 
@@ -196,18 +200,13 @@ status:
 To get/stream logs of a particular step of a workplan, you need to call the `Get` API of `WorkplanLog` custom resource.
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/default/workplanlogs/sample-workflow-sg9h4?step=step-echo'
+$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-sg9h4?step=step-echo'
 hello world
 ```
 
 ## Cleanup
 
 ```console
-$ kubectl delete -f docs/examples/serial-execution/
-configmap "sample-config" deleted
-serviceaccount "wf-sa" deleted
-clusterrole.rbac.authorization.k8s.io "wf-role" deleted
-rolebinding.rbac.authorization.k8s.io "wf-role-binding" deleted
-clusterrolebinding.rbac.authorization.k8s.io "operator-role-binding" deleted
-workflow.engine.kube.ci "sample-workflow" deleted
+$ kubectl delete ns demo
+namespace "demo" deleted
 ```

@@ -2,7 +2,7 @@ apiVersion: extensions.kube.ci/v1alpha1
 kind: Trigger
 metadata:
   name: sample-trigger
-  namespace: default
+  namespace: demo
 workflows:
 - sample-workflow
 request:
@@ -10,7 +10,7 @@ request:
   kind: ConfigMap
   metadata:
     name: sample-config
-    namespace: default
+    namespace: demo
   data:
     example.property.1: hello
     example.property.2: world

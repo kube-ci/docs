@@ -2,13 +2,13 @@ apiVersion: engine.kube.ci/v1alpha1
 kind: Workflow
 metadata:
   name: sample-workflow
-  namespace: default
+  namespace: demo
 spec:
   triggers:
   - apiVersion: git.kube.ci/v1alpha1
     kind: PullRequest
     resource: pullrequests
-    namespace: default
+    namespace: demo
     selector:
       matchLabels:
         repository: kubeci-gpig

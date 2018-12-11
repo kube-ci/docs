@@ -70,39 +70,36 @@ status:
   phase: Succeeded
   reason: All tasks completed successfully
   stepTree:
-  - - ContainerState:
+  - - containerState:
         terminated:
           containerID: docker://b5847edfcedf25bbaee3606034cdf30fe38911c108ed3adab594a3f2b6773c0b
           exitCode: 0
           finishedAt: 2018-11-07T05:43:15Z
           reason: Completed
           startedAt: 2018-11-07T05:43:13Z
-      Name: step-clone
-      Namespace: default
-      PodName: sample-workflow-7gx5d-0
-      Status: Terminated
-  - - ContainerState:
+      name: step-clone
+      podName: sample-workflow-7gx5d-0
+      status: Terminated
+  - - containerState:
         terminated:
           containerID: docker://6f26921dbbed419bee6909e62e3c4b5c45c978701d746dde77008bb16f3d61de
           exitCode: 0
           finishedAt: 2018-11-07T05:43:58Z
           reason: Completed
           startedAt: 2018-11-07T05:43:21Z
-      Name: step-test
-      Namespace: default
-      PodName: sample-workflow-7gx5d-0
-      Status: Terminated
-  - - ContainerState:
+      name: step-test
+      podName: sample-workflow-7gx5d-0
+      status: Terminated
+  - - containerState:
         terminated:
           containerID: docker://ea8047ef352bc97bdffb02e27b60797cc01a65599755033eb3c1cfce63b303dc
           exitCode: 0
           finishedAt: 2018-11-07T05:44:08Z
           reason: Completed
           startedAt: 2018-11-07T05:44:08Z
-      Name: cleanup-step
-      Namespace: default
-      PodName: sample-workflow-7gx5d-0
-      Status: Terminated
+      name: cleanup-step
+      podName: sample-workflow-7gx5d-0
+      status: Terminated
   taskIndex: -1
 ```
 
@@ -163,8 +160,7 @@ Indicates the zero-based index of the task which is currently running. In case o
 
 Collection of step-entries organized in a two-dimensional array based on dependency. A single step-entry describes the step-container in which the step is scheduled:
 
-- Name: Name of the step.
-- Namespace: Namespace of the workplan. Note that, all the workplans and pods are created in the same namespace of the Workflow.
+- Name: Name of the step. Note that, step name and associated container name are always same.
 - PodName: Name of the pod where step-container is scheduled.
 - Status: Current status of the container. Possible values are: `Uninitialized` (pod not exists), `Waiting`, `Running` and `Terminated`.
 - ContainerState: Value of [ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/#containerstate-v1-core) from pod-status.

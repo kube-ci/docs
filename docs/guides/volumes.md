@@ -6,6 +6,13 @@ This tutorial will show you how to specify explicit volumes and mount them insid
 
 Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/install.md).
 
+To keep things isolated, we are going to use a separate namespace called `demo` throughout this tutorial.
+
+```console
+$ kubectl create ns demo
+namespace/demo created
+```
+
 ## Configure RBAC
 
 You need to specify a service-account in `spec.serviceAccount` to ensure RBAC for the workflow. This service-account along with operator's service-account must have `list` and `watch` permissions for the resources specified in `spec.triggers`.
@@ -32,13 +39,13 @@ apiVersion: engine.kube.ci/v1alpha1
 kind: Workflow
 metadata:
   name: sample-workflow
-  namespace: default
+  namespace: demo
 spec:
   triggers:
   - apiVersion: v1
     kind: ConfigMap
     resource: configmaps
-    namespace: default
+    namespace: demo
     name: sample-config
     onCreateOrUpdate: true
     onDelete: false
@@ -83,13 +90,13 @@ trigger.extensions.kube.ci/sample-trigger created
 Whenever a workflow is triggered, a workplan is created and respective pods are scheduled.
 
 ```console
-$ kubectl get workplan -l workflow=sample-workflow
+$ kubectl get workplan -l workflow=sample-workflow -n demo
 NAME                    CREATED AT
 sample-workflow-gmjrl   13s
 ```
 
 ```console
-$ kubectl get pods -l workplan=sample-workflow-gmjrl
+$ kubectl get pods -l workplan=sample-workflow-gmjrl -n demo
 NAME                      READY   STATUS      RESTARTS   AGE
 sample-workflow-gmjrl-0   0/1     Completed   0          29s
 ```
@@ -99,18 +106,13 @@ sample-workflow-gmjrl-0   0/1     Completed   0          29s
 Both `step-one` and `step-two` mounts the same hostpath volume but in different paths. So the content created by `step-one` in path `/path-one` is also available to `step-two` in path `/path-two`.
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/default/workplanlogs/sample-workflow-gmjrl?step=step-two'
+$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-gmjrl?step=step-two'
 file-01
 ```
 
 ## Cleanup
 
 ```console
-$ kubectl delete -f docs/examples/volumes/
-serviceaccount "wf-sa" deleted
-clusterrole.rbac.authorization.k8s.io "wf-role" deleted
-rolebinding.rbac.authorization.k8s.io "wf-role-binding" deleted
-clusterrolebinding.rbac.authorization.k8s.io "operator-role-binding" deleted
-workflow.engine.kube.ci "sample-workflow" deleted
-Error from server (NotFound): error when deleting "docs/examples/force-trigger/trigger.yaml": the server could not find the requested resource
+$ kubectl delete ns demo
+namespace "demo" deleted
 ```

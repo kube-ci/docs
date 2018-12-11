@@ -6,6 +6,13 @@ This tutorial will show you how to use interactive `workplan-logs` CLI to collec
 
 Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/install.md).
 
+To keep things isolated, we are going to use a separate namespace called `demo` throughout this tutorial.
+
+```console
+$ kubectl create ns demo
+namespace/demo created
+```
+
 ## Configure RBAC
 
 You need to specify a service-account in `spec.serviceAccount` to ensure RBAC for the workflow. This service-account along with operator's service-account must have `list` and `watch` permissions for the resources specified in `spec.triggers`.
@@ -32,13 +39,13 @@ apiVersion: engine.kube.ci/v1alpha1
 kind: Workflow
 metadata:
   name: sample-workflow
-  namespace: default
+  namespace: demo
 spec:
   triggers:
   - apiVersion: v1
     kind: ConfigMap
     resource: configmaps
-    namespace: default
+    namespace: demo
     name: sample-config
     onCreateOrUpdate: true
     onDelete: false
@@ -72,13 +79,13 @@ trigger.extensions.kube.ci/sample-trigger created
 Whenever a workflow is triggered, a workplan is created and respective pods are scheduled.
 
 ```console
-$ kubectl get workplan -l workflow=sample-workflow
+$ kubectl get workplan -l workflow=sample-workflow -n demo
 NAME                    CREATED AT
 sample-workflow-v8skm   13s
 ```
 
 ```console
-$ kubectl get pods -l workplan=sample-workflow-v8skm
+$ kubectl get pods -l workplan=sample-workflow-v8skm -n demo
 NAME                      READY   STATUS      RESTARTS   AGE
 sample-workflow-v8skm-0   0/1     Completed   0          29s
 ```
@@ -96,7 +103,7 @@ Alternatively, we can choose them interactively:
 
 ```console
 $ kubeci-engine workplan-logs
-? Choose a Namespace: default
+? Choose a namespace: demo
 ? Choose a Workflow: sample-workflow
 ? Choose a Workplan: sample-workflow-v8skm
 ? Choose a running/terminated step: step-echo
@@ -127,8 +134,15 @@ Forwarding from [::1]:9090 -> 9090
 
 Go to following URL to get current of status workplan `sample-workflow-v8skm`:
 
-`http://127.0.0.1:9090/namespaces/default/workplans/sample-workflow-v8skm`
+`http://127.0.0.1:9090/namespaces/demo/workplans/sample-workflow-v8skm`
 
 Go to following URL to get logs of step `step-echo`:
 
-`http://127.0.0.1:9090/namespaces/default/workplans/sample-workflow-v8skm/steps/step-echo`
+`http://127.0.0.1:9090/namespaces/demo/workplans/sample-workflow-v8skm/steps/step-echo`
+
+## Cleanup
+
+```console
+$ kubectl delete ns demo
+namespace "demo" deleted
+```

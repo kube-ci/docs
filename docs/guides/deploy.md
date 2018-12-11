@@ -6,6 +6,13 @@ This tutorial will show you how to clone a Github source repository, build/push 
 
 Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/install.md).
 
+To keep things isolated, we are going to use a separate namespace called `demo` throughout this tutorial.
+
+```console
+$ kubectl create ns demo
+namespace/demo created
+```
+
 ## Create Secret
 
 In order to push image into container registry, you have to configure credential-initializer. First, create a secret with docker credentials and proper annotations. Also, you need to specify this secret in workflow's service-account in order to configure credential-initializer.
@@ -40,7 +47,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: wf-sa
-  namespace: default
+  namespace: demo
 secrets:
 - name: docker-credential
 ```
@@ -67,13 +74,13 @@ apiVersion: engine.kube.ci/v1alpha1
 kind: Workflow
 metadata:
   name: sample-workflow
-  namespace: default
+  namespace: demo
 spec:
   triggers:
   - apiVersion: v1
     kind: ConfigMap
     resource: configmaps
-    namespace: default
+    namespace: demo
     name: sample-config
     onCreateOrUpdate: true
     onDelete: false
@@ -158,13 +165,13 @@ trigger.extensions.kube.ci/sample-trigger created
 Whenever a workflow is triggered, a workplan is created and respective pods are scheduled.
 
 ```console
-$ kubectl get workplan -l workflow=sample-workflow
+$ kubectl get workplan -l workflow=sample-workflow -n demo
 NAME                    CREATED AT
 sample-workflow-zzqkx   5s
 ```
 
 ```console
-$ kubectl get pods -l workplan=sample-workflow-zzqkx
+$ kubectl get pods -l workplan=sample-workflow-zzqkx -n demo
 NAME                      READY   STATUS     RESTARTS   AGE
 sample-workflow-zzqkx-0   0/1     Init:2/4   0          47s
 ```
@@ -174,36 +181,27 @@ sample-workflow-zzqkx-0   0/1     Init:2/4   0          47s
 You can check logs of any step to verify if all the operations has been successfully completed or not. For example, run following command to check logs of `build-and-push` step:
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/default/workplanlogs/sample-workflow-zzqkx?step=build-and-push'
+$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-zzqkx?step=build-and-push'
 ```
 
 ## Check Deployment
 
 ```console
-$ kubectl get deployment -l app=kubeci-gpig
+$ kubectl get deployment -l app=kubeci-gpig -n demo
 NAME                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 kubeci-gpig-deployment   1         1         1            1           11s
 
-$ kubectl get pod -l app=kubeci-gpig
+$ kubectl get pod -l app=kubeci-gpig -n demo
 NAME                                      READY   STATUS    RESTARTS   AGE
 kubeci-gpig-deployment-74c75c9b79-w89h8   1/1     Running   0          43s
 
-$ kubectl logs kubeci-gpig-deployment-74c75c9b79-w89h8
+$ kubectl logs kubeci-gpig-deployment-74c75c9b79-w89h8 -n demo
 Starting server
 ```
 
 ## Cleanup
 
 ```console
-$ kubectl delete -f ./docs/examples/deploy
-serviceaccount "wf-sa" deleted
-clusterrole.rbac.authorization.k8s.io "wf-role" deleted
-rolebinding.rbac.authorization.k8s.io "wf-role-binding" deleted
-clusterrolebinding.rbac.authorization.k8s.io "operator-role-binding" deleted
-secret "docker-credential" deleted
-workflow.engine.kube.ci "sample-workflow" deleted
-Error from server (NotFound): error when deleting "docs/examples/deploy/trigger.yaml": the server could not find the requested resource
-
-$ kubectl delete deployment -l app=kubeci-gpig
-deployment.extensions "kubeci-gpig-deployment" deleted
+$ kubectl delete ns demo
+namespace "demo" deleted
 ```

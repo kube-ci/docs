@@ -6,6 +6,13 @@ Your steps might need some information about the resource for which the workflow
 
 Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/install.md).
 
+To keep things isolated, we are going to use a separate namespace called `demo` throughout this tutorial.
+
+```console
+$ kubectl create ns demo
+namespace/demo created
+```
+
 ## Configure RBAC
 
 You need to specify a service-account in `spec.serviceAccount` to ensure RBAC for the workflow. This service-account along with operator's service-account must have `list` and `watch` permissions for the resources specified in `spec.triggers`.
@@ -32,13 +39,13 @@ apiVersion: engine.kube.ci/v1alpha1
 kind: Workflow
 metadata:
   name: sample-workflow
-  namespace: default
+  namespace: demo
 spec:
   triggers:
   - apiVersion: v1
     kind: ConfigMap
     resource: configmaps
-    namespace: default
+    namespace: demo
     name: sample-config
     onCreateOrUpdate: true
     onDelete: false
@@ -69,44 +76,15 @@ trigger.extensions.kube.ci/sample-trigger created
 Whenever a workflow is triggered, a workplan is created and respective pods are scheduled.
 
 ```console
-$ kubectl get workplan -l workflow=sample-workflow
+$ kubectl get workplan -l workflow=sample-workflow -n demo
 NAME                    CREATED AT
 sample-workflow-8nfcr   5s
 ```
 
 ```console
-$ kubectl get pods -l workplan=sample-workflow-8nfcr
+$ kubectl get pods -l workplan=sample-workflow-8nfcr -n demo
 NAME                      READY   STATUS      RESTARTS   AGE
 sample-workflow-8nfcr-0   0/1     Completed   0          25s
-```
-
-Also, for json-path data a secret is created with workflow name prefix .
-
-```console
-$ kubectl get secret | grep sample-workflow
-sample-workflow-gv2kr   Opaque                                2      92s
-
-$ kubectl get secret sample-workflow-gv2kr -o yaml
-apiVersion: v1
-data:
-  ENV_ONE: aGVsbG8=
-  ENV_TWO: d29ybGQ=
-kind: Secret
-metadata:
-  creationTimestamp: 2018-10-29T10:58:27Z
-  generateName: sample-workflow-
-  name: sample-workflow-gv2kr
-  namespace: default
-  ownerReferences:
-  - apiVersion: engine.kube.ci/v1alpha1
-    blockOwnerDeletion: true
-    kind: Workflow
-    name: sample-workflow
-    uid: 87b5b407-db69-11e8-a5a2-080027f998cc
-  resourceVersion: "29084"
-  selfLink: /api/v1/namespaces/default/secrets/sample-workflow-gv2kr
-  uid: 903f13a1-db69-11e8-a5a2-080027f998cc
-type: Opaque
 ```
 
 ## Check Logs
@@ -114,7 +92,7 @@ type: Opaque
 The `step-one` prints the values of explicit environment variables populated from json-path data of the triggering resource (which is `sample-config` configmap in this example).
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/default/workplanlogs/sample-workflow-8nfcr?step=step-one'
+$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-8nfcr?step=step-one'
 ENV_ONE=hello
 ENV_TWO=world
 ```
@@ -124,11 +102,6 @@ Here, we can see that, `HOME`, `NAMESPACE` and `WORKPLAN` environment variables 
 ## Cleanup
 
 ```console
-$ kubectl delete -f docs/examples/json-path/
-serviceaccount "wf-sa" deleted
-clusterrole.rbac.authorization.k8s.io "wf-role" deleted
-rolebinding.rbac.authorization.k8s.io "wf-role-binding" deleted
-clusterrolebinding.rbac.authorization.k8s.io "operator-role-binding" deleted
-workflow.engine.kube.ci "sample-workflow" deleted
-Error from server (NotFound): error when deleting "docs/examples/json-path/trigger.yaml": the server could not find the requested resource
+$ kubectl delete ns demo
+namespace "demo" deleted
 ```

@@ -6,6 +6,13 @@ This tutorial will show you how to build and push container image from a Github 
 
 Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/install.md).
 
+To keep things isolated, we are going to use a separate namespace called `demo` throughout this tutorial.
+
+```console
+$ kubectl create ns demo
+namespace/demo created
+```
+
 ## Create Secret
 
 In order to push image into container registry, you have to configure credential-initializer. First, create a secret with docker credentials and proper annotations. Also, you need to specify this secret in workflow's service-account in order to configure credential-initializer.
@@ -40,7 +47,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: wf-sa
-  namespace: default
+  namespace: demo
 secrets:
 - name: docker-credential
 ```
@@ -67,13 +74,13 @@ apiVersion: engine.kube.ci/v1alpha1
 kind: Workflow
 metadata:
   name: sample-workflow
-  namespace: default
+  namespace: demo
 spec:
   triggers:
   - apiVersion: v1
     kind: ConfigMap
     resource: configmaps
-    namespace: default
+    namespace: demo
     name: sample-config
     onCreateOrUpdate: true
     onDelete: false
@@ -133,13 +140,13 @@ trigger.extensions.kube.ci/sample-trigger created
 Whenever a workflow is triggered, a workplan is created and respective pods are scheduled.
 
 ```console
-$ kubectl get workplan -l workflow=sample-workflow
+$ kubectl get workplan -l workflow=sample-workflow -n demo
 NAME                    CREATED AT
 sample-workflow-779ht   5s
 ```
 
 ```console
-$ kubectl get pods -l workplan=sample-workflow-779ht
+$ kubectl get pods -l workplan=sample-workflow-779ht -n demo
 NAME                      READY   STATUS     RESTARTS   AGE
 sample-workflow-779ht-0   0/1     Init:2/3   0          47s
 ```
@@ -149,18 +156,12 @@ sample-workflow-779ht-0   0/1     Init:2/3   0          47s
 You can check logs of the `build-and-push` step to verify if the image has been successfully built and pushed or not.
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/default/workplanlogs/sample-workflow-779ht?step=build-and-push'
+$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-779ht?step=build-and-push'
 ```
 
 ## Cleanup
 
 ```console
-$ kubectl delete -f ./docs/examples/build-img
-serviceaccount "wf-sa" deleted
-clusterrole.rbac.authorization.k8s.io "wf-role" deleted
-rolebinding.rbac.authorization.k8s.io "wf-role-binding" deleted
-clusterrolebinding.rbac.authorization.k8s.io "operator-role-binding" deleted
-secret "docker-credential" deleted
-workflow.engine.kube.ci "sample-workflow" deleted
-Error from server (NotFound): error when deleting "docs/examples/build-img/trigger.yaml": the server could not find the requested resource
+$ kubectl delete ns demo
+namespace "demo" deleted
 ```

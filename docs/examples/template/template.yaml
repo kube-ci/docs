@@ -2,7 +2,7 @@ apiVersion: engine.kube.ci/v1alpha1
 kind: WorkflowTemplate
 metadata:
   name: sample-template
-  namespace: default
+  namespace: demo
 spec:
   steps:
   - name: step-echo
