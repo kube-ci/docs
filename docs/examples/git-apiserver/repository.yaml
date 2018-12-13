@@ -1,0 +1,10 @@
+apiVersion: git.kube.ci/v1alpha1
+kind: Repository
+metadata:
+  name: kubeci-gpig
+  namespace: demo
+spec:
+  host: github
+  owner: tamalsaha
+  repo: kubeci-gpig
+  cloneUrl: https://github.com/kube-ci/kubeci-gpig.git

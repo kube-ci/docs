@@ -1,21 +1,40 @@
+---
+title: Welcome | KubeCI
+description: Welcome to KubeCI
+menu:
+  product_kubeci_0.1.0:
+    identifier: readme-kubeci
+    name: Readme
+    parent: welcome
+    weight: -1
+product_name: kubeci
+menu_name: product_kubeci_0.1.0
+section_menu_id: welcome
+url: /products/kubeci/0.1.0/welcome/
+aliases:
+  - /products/kubeci/0.1.0/
+  - /products/kubeci/0.1.0/README/
+---
+
 # KubeCI
-KubeCI engine by AppsCode is a Kubernetes native workflow engine.
 
-From here you can learn all about KubeCI engine's architecture and how to deploy and use KubeCI.
+KubeCI by AppsCode is a Kubernetes native CI system.
 
-- [Concepts](/docs/concepts/). Concepts explain some significant aspect of KubeCI engine. This is where you can learn about what KubeCI engine does and how it does it.
+From here you can learn all about KubeCI architecture and how to deploy and use KubeCI.
 
-- [Setup](/docs/setup/). Setup contains instructions for installing the KubeCI engine in various cloud providers.
+- [Concepts](/docs/concepts/). Concepts explain some significant aspect of KubeCI. This is where you can learn about what KubeCI engine does and how it does it.
 
-- [Guides](/docs/guides/). Guides show you how to perform tasks with KubeCI engine.
+- [Setup](/docs/setup/). Setup contains instructions for installing the KubeCI in various cloud providers.
 
-- [Reference](/docs/reference/). Detailed exhaustive lists of command-line options, configuration options, API definitions, and procedures.
+- [Guides](/docs/guides/). Guides show you how to perform tasks with KubeCI.
+
+- Reference. Detailed exhaustive lists of command-line options, configuration options, API definitions, and procedures of [KubeCI Engine](/docs/reference/engine) and [Git API Server](/docs/reference/git-apiserver).
 
 We're always looking for help improving our documentation, so please don't hesitate to [file an issue](https://github.com/kube-ci/project/issues/new) if you see some problem. Or better yet, submit your own [contributions](/docs/CONTRIBUTING.md) to help
 make our docs better.
 
 ---
 
-**KubeCI engine binaries collects anonymous usage statistics to help us learn how the software is being used and how we can improve it. To disable stats collection, run the operator with the flag** `--enable-analytics=false`.
+**KubeCI binaries collects anonymous usage statistics to help us learn how the software is being used and how we can improve it. To disable stats collection, run the operator with the flag** `--enable-analytics=false`.
 
 ---
