@@ -153,6 +153,22 @@ Copied from `workflow.spec.serviceAccount`.
 
 Copied from `workflow.spec.securityContext`.
 
+### spec.nodeSelector
+
+Copied from `workflow.spec.nodeSelector`. All associated pods of a specific workplan are scheduled in the same node. It is required since they share common home and workspace directories. Note that, node-selector is used only for the first pod of the workplan. When first pod is scheduled in a node, the latter pods of that workplan is scheduled in the same node using `pod.spec.nodeName`.
+
+### spec.schedulerName
+
+Copied from `workflow.spec.schedulerName`.
+
+### spec.tolerations
+
+Copied from `workflow.spec.tolerations`.
+
+### spec.resources
+
+Copied from `workflow.spec.resources`.
+
 ## Workplan Status
 
 The status section of a workplan contains enough information to describe the current phase of a workplan. It has following sections:
@@ -168,6 +184,10 @@ Describes the reason behind the current phase of the workplan.
 ### status.taskIndex
 
 Indicates the zero-based index of the task which is currently running. In case of `Pending`, `Succeeded` and `Failed`, it is set to `-1`.
+
+### status.nodeName
+
+Indicates the node name where all the pods of this workplan are scheduled. It is set when first pod of the workplan is scheduled in a node.
 
 ### status.stepTree
 

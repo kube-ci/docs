@@ -140,3 +140,19 @@ List of volumes that can be mounted by the task containers belonging to the work
 ### spec.securityContext
 
 Specifies security context for all pods associated with this workflow. For more details see [here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#podsecuritycontext-v1-core).
+
+### spec.nodeSelector
+
+Specifies NodeSelector for all pods associated with this workflow. It is a selector which must be true for the pods to fit on a node. Selector which must match a node's labels for the pods to be scheduled on that node.
+
+### spec.schedulerName
+
+Specifies SchedulerName for all pods associated with this workflow. If specified, all pods will be dispatched by specified scheduler. If not specified, all pods will be dispatched by default scheduler.
+
+### spec.tolerations
+
+Specifies tolerations for all pods associated with this workflow.
+
+### spec.resources
+
+Specifies resource requirements for all the step containers associated with this workflow.
