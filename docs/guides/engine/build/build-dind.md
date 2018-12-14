@@ -32,7 +32,7 @@ namespace/demo created
 In order to push image into container registry, you have to configure credential-initializer. First, create a secret with docker credentials and proper annotations. Also, you need to specify this secret in workflow's service-account in order to configure credential-initializer.
 
 ```console
-$ kubectl apply -f ./docs/examples/engine/engine/build-dind/secret.yaml 
+$ kubectl apply -f ./docs/examples/engine/build-dind/secret.yaml
 secret/docker-credential created
 ```
 
@@ -70,7 +70,7 @@ secrets:
 Then, create a cluster-role with ConfigMap `list` and `watch` permissions. Now, bind it with service-accounts of both workflow and operator.
 
 ```console
-$ kubectl apply -f ./docs/examples/engine/engine/build-dind/rbac.yaml  
+$ kubectl apply -f ./docs/examples/engine/build-dind/rbac.yaml
 serviceaccount/wf-sa created
 clusterrole.rbac.authorization.k8s.io/wf-role created
 rolebinding.rbac.authorization.k8s.io/wf-role-binding created
@@ -80,7 +80,7 @@ clusterrolebinding.rbac.authorization.k8s.io/operator-role-binding created
 ## Create Workflow
 
 ```console
-$ kubectl apply -f ./docs/examples/engine/engine/build-dind/workflow.yaml
+$ kubectl apply -f ./docs/examples/engine/build-dind/workflow.yaml
 workflow.engine.kube.ci/sample-workflow created
 ```
 
@@ -161,7 +161,7 @@ Step `build-and-push` runs in parallel with `dind-daemon` as a sidecar container
 Now trigger the workflow by creating a `Trigger` custom-resource which contains a complete ConfigMap resource inside `.request` section.
 
 ```console
-$ kubectl apply -f ./docs/examples/engine/engine/build-dind/trigger.yaml 
+$ kubectl apply -f ./docs/examples/engine/build-dind/trigger.yaml
 trigger.extensions.kube.ci/sample-trigger created
 ```
 
