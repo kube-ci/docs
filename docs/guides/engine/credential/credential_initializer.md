@@ -18,7 +18,7 @@ section_menu_id: guides
 
 This tutorial will show you how to initialize docker and git credentials using service-account secrets. This credential-initializer step runs before any other steps and puts necessary configuration files for Docker and Git into shared `HOME` directory. For this, the service-account secrets should have annotations with prefix `credential.kube.ci/`.
 
-Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/install.md).
+Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/engine/install.md).
 
 To keep things isolated, we are going to use a separate namespace called `demo` throughout this tutorial.
 

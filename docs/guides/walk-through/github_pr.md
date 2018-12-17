@@ -18,7 +18,7 @@ section_menu_id: guides
 
 This tutorial will show you how to use KubeCI engine and [Git API server](https://github.com/kube-ci/git-apiserver) to run tests and update commit status based on labels of a Github pull-request.
 
-Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/install.md). Also, install git-apiserver following the steps [here](https://github.com/kube-ci/git-apiserver).
+Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/engine/install.md). Also, install git-apiserver following the steps [here](/docs/setup/git-apiserver/install.md).
 
 To keep things isolated, we are going to use a separate namespace called `demo` throughout this tutorial.
 

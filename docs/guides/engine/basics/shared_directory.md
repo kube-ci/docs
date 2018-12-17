@@ -18,7 +18,7 @@ section_menu_id: guides
 
 The home directory and current working directory are shared among all step-containers. The shared working-directory helps to share input/output files among step-containers. For example, two step-containers might need same input files, again outputs of one step might be inputs of next step. The shared `HOME` directory helps to put common configuration files (like docker and git config) in a shared `HOME` directory.
 
-Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/install.md).
+Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/engine/install.md).
 
 To keep things isolated, we are going to use a separate namespace called `demo` throughout this tutorial.
 

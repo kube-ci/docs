@@ -8,12 +8,15 @@
 This repository documents various aspects of KubeCI poject.
 
 ## Installation
-To install KubeCI engine and addons, please follow the guide [here](https://github.com/kube-ci/docs/blob/master/docs/setup/install.md).
+
+To install KubeCI engine and addons, please follow the guide [here](https://github.com/kube-ci/docs/blob/master/docs/setup/README.md).
 
 ## Using KubeCI
+
 Want to learn how to use KubeCI? Please start [here](https://github.com/kube-ci/docs/blob/master/docs/guides/README.md).
 
 ## Contribution guidelines
+
 Want to help improve KubeCI? Please start [here](https://github.com/kube-ci/docs/blob/master/docs/CONTRIBUTING.md).
 
 ---
@@ -23,6 +26,7 @@ Want to help improve KubeCI? Please start [here](https://github.com/kube-ci/docs
 ---
 
 ## Support
+
 We use Slack for public discussions. To chit chat with us or the rest of the community, join us in the [AppsCode Slack team](https://appscode.slack.com/messages/kube-ci/) channel `#kube-ci`. To sign up, use our [Slack inviter](https://slack.appscode.com/).
 
 If you have found a bug with KubeCI or want to request for new features, please [file an issue](https://github.com/kube-ci/project/issues/new).
