@@ -14,17 +14,10 @@ spec:
     onDelete: false
   serviceAccount: wf-sa
   executionOrder: Serial
-  allowManualTrigger: true
   steps:
-  - name: step-echo
+  - name: step-hello
     image: alpine
     commands:
     - echo
     args:
     - hello world
-  - name: step-wait
-    image: alpine
-    commands:
-    - sleep
-    args:
-    - 10s

@@ -22,7 +22,7 @@ Guides show you how to perform tasks with KubeCI engine.
 ## Workflow Basics
 
 - Learn how to configure and trigger a set of serial tasks [here](/docs/guides/engine/basics/serial_execution.md).
-- Learn how to manually trigger a workflow [here](/docs/guides/engine/basics/force_trigger.md).
+- Learn how to manually trigger a workflow [here](/docs/guides/engine/basics/manual_trigger.md).
 - Learn how to specify DAG dependency [here](/docs/guides/engine/basics/dag_execution.md).
 - Learn how to invoke workflow template [here](/docs/guides/engine/basics/template.md).
 - Learn how shared directories works [here](/docs/guides/engine/basics/shared_directory.md).

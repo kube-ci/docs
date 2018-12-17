@@ -16,9 +16,14 @@ section_menu_id: guides
 
 # Manual Trigger
 
-This tutorial will show you how to trigger a Workflow manually. Here, we will use the same workflow used in previous [serial-execution](serial_execution.md) example, but trigger it without creating any ConfigMap. Note that, for force trigger we have to set `allowManualTrigger` to true.
+This tutorial will show you how to trigger a Workflow manually. There are two possible triggering scenarios:
 
-Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/install.md).
+- `workflow.spec.triggers` empty: You can trigger such workflows only using manual trigger. For that you should leave `trigger.spec.request` empty.
+- `workflow.spec.triggers` not empty: Your `trigger.spec.request` object must satisfy one of `workflow.spec.triggers`. You can also leave `trigger.spec.request` empty, but `envFromPath` will set to empty in that case.
+
+Here, we will use the same workflow used in previous [hello-world](hello_world.md) example, but trigger it without creating any ConfigMap. Note that, for force trigger we have to set `allowManualTrigger` to true.
+
+Before we start, you need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. If you do not already have a cluster, you can create one by using [Minikube](https://github.com/kubernetes/minikube). Now, install KubeCI engine in your cluster following the steps [here](/docs/setup/engine/install.md).
 
 To keep things isolated, we are going to use a separate namespace called `demo` throughout this tutorial.
 
@@ -34,7 +39,7 @@ You need to specify a service-account in `spec.serviceAccount` to ensure RBAC fo
 First, create a service-account for the workflow. Then, create a cluster-role with ConfigMap `list` and `watch` permissions. Now, bind it with service-accounts of both workflow and operator.
 
 ```console
-$ kubectl apply -f ./docs/examples/engine/force-trigger/rbac.yaml
+$ kubectl apply -f ./docs/examples/engine/manual-trigger/rbac.yaml
 serviceaccount/wf-sa created
 clusterrole.rbac.authorization.k8s.io/wf-role created
 rolebinding.rbac.authorization.k8s.io/wf-role-binding created
@@ -44,7 +49,7 @@ clusterrolebinding.rbac.authorization.k8s.io/operator-role-binding created
 ## Create Workflow
 
 ```console
-$ kubectl apply -f ./docs/examples/engine/force-trigger/workflow.yaml
+$ kubectl apply -f ./docs/examples/engine/manual-trigger/workflow.yaml
 workflow.engine.kube.ci/sample-workflow created
 ```
 
@@ -67,18 +72,12 @@ spec:
   executionOrder: Serial
   allowManualTrigger: true
   steps:
-  - name: step-echo
+  - name: step-hello
     image: alpine
     commands:
     - echo
     args:
     - hello world
-  - name: step-wait
-    image: alpine
-    commands:
-    - sleep
-    args:
-    - 10s
 ```
 
 ## Trigger Workflow
@@ -86,7 +85,7 @@ spec:
 Now trigger the workflow by creating a `Trigger` custom-resource which contains a complete ConfigMap resource inside `.request` section.
 
 ```console
-$ kubectl apply -f ./docs/examples/engine/force-trigger/trigger.yaml
+$ kubectl apply -f ./docs/examples/engine/manual-trigger/trigger.yaml
 trigger.extensions.kube.ci/sample-trigger created
 ```
 
@@ -114,13 +113,32 @@ Whenever a workflow is triggered, a workplan is created and respective pods are 
 ```console
 $ kubectl get workplan -l workflow=sample-workflow -n demo
 NAME                    CREATED AT
-sample-workflow-wnmw2   13s
+sample-workflow-nv4jn   13s
 ```
 
 ```console
-$ kubectl get pods -l workplan=sample-workflow-wnmw2 -n demo
+$ kubectl get pods -l workplan=sample-workflow-nv4jn -n demo
 NAME                      READY   STATUS      RESTARTS   AGE
-sample-workflow-wnmw2-0   0/1     Completed   0          29s
+sample-workflow-nv4jn-0   0/1     Completed   0          29s
+```
+
+## Trigger without request
+
+You can also trigger the workflow by omitting `trigger.spec.request`.
+
+```console
+$ kubectl apply -f ./docs/examples/engine/manual-trigger/trigger-without-request.yaml
+trigger.extensions.kube.ci/sample-trigger created
+```
+
+```yaml
+apiVersion: extensions.kube.ci/v1alpha1
+kind: Trigger
+metadata:
+  name: sample-trigger
+  namespace: demo
+workflows:
+- sample-workflow
 ```
 
 ## Cleanup

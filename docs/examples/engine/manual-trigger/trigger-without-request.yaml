@@ -1,0 +1,7 @@
+apiVersion: extensions.kube.ci/v1alpha1
+kind: Trigger
+metadata:
+  name: sample-trigger
+  namespace: demo
+workflows:
+- sample-workflow

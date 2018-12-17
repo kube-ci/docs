@@ -119,7 +119,7 @@ Note that, if nothing specified, `Serial` will be used as default execution orde
 
 ### spec.allowManualTrigger
 
-When true, manual/fake trigger wil be allowed. See [here](/docs/guides/force_trigger.md) for more details about how to perform this.
+When true, manual/fake trigger wil be allowed. See [here](/docs/guides/engine/basics/manual_trigger.md) for more details about how to perform this.
 
 ### spec.serviceAccount
 
