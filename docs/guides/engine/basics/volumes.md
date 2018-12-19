@@ -117,10 +117,12 @@ sample-workflow-gmjrl-0   0/1     Completed   0          29s
 
 ## Check Logs
 
+You can use KubeCI CLI to get logs of any step. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
+
 Both `step-one` and `step-two` mounts the same hostpath volume but in different paths. So the content created by `step-one` in path `/path-one` is also available to `step-two` in path `/path-two`.
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-gmjrl?step=step-two'
+$ kubectl ci logs sample-workflow-gmjrl --step step-two -n demo
 file-01
 ```
 

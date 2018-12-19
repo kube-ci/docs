@@ -159,10 +159,12 @@ spec:
 
 ## Check Logs
 
+You can use KubeCI CLI to get logs of any step. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
+
 The `step-one` prints the values of explicit environment variables populated from json-path data of the triggering resource (which is `sample-config` configmap in this example).
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-8nfcr?step=step-one'
+$ kubectl ci logs sample-workflow-8nfcr --step step-one -n demo
 ENV_ONE=hello
 ENV_TWO=world
 ```

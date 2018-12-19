@@ -115,10 +115,12 @@ sample-workflow-cxg4k-0   0/1     Completed   0          25s
 
 ## Check Logs
 
+You can use KubeCI CLI to get logs of any step. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
+
 The `step-print-dir` prints the path of `HOME` directory and current working directory. The working directory is set to `/kubeci/workspace` and `HOME` directory is set to `/kubeci/home` for all step-containers.
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-cxg4k?step=step-print-dir'
+$ kubectl ci logs sample-workflow-cxg4k --step step-print-dir -n demo
 working-dir /kubeci/workspace
 home-dir /kubeci/home
 ```
@@ -126,7 +128,7 @@ home-dir /kubeci/home
 The `step-create` creates `file-01` in working directory and `file-02` `HOME` directory. And the `step-list-files` lists the contents of working directory and `HOME` directory.
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-cxg4k?step=step-list-files'
+$ kubectl ci logs sample-workflow-cxg4k --step step-list-files -n demo
 files in working-dir file-01
 files in home-dir file-02
 ```

@@ -3,7 +3,7 @@ title: Serial Execution | Guides
 description: Serial Execution
 menu:
   product_kubeci_0.1.0:
-    identifier: guides-serial
+    identifier: guides-hello
     name: Serial Execution
     parent: guides-basics
     weight: 1
@@ -190,12 +190,16 @@ status:
 
 ## Get Logs
 
-To get/stream logs of a particular step of a workplan, you need to call the `Get` API of `WorkplanLog` custom resource.
+You can use KubeCI CLI to get logs of any step. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
+
+Now, run following command to get logs of `step-hello`:
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-fv7fq?step=step-hello'
+$ kubectl ci logs sample-workflow-fv7fq --step step-hello -n demo
 hello world
 ```
+
+You can also use workplan-viewer web-ui to get logs and status of a workplan. See [here](/docs/guides/engine/cli/workplan_status_logs.md).
 
 ## Cleanup
 

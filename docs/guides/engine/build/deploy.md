@@ -192,10 +192,12 @@ sample-workflow-zzqkx-0   0/1     Init:2/4   0          47s
 
 ## Check Logs
 
+You can use KubeCI CLI to get logs of any step. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
+
 You can check logs of any step to verify if all the operations has been successfully completed or not. For example, run following command to check logs of `build-and-push` step:
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-zzqkx?step=build-and-push'
+$ kubectl ci logs sample-workflow-zzqkx --step build-and-push -n demo
 ```
 
 ## Check Deployment

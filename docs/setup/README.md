@@ -34,6 +34,10 @@ Git API server is a Kubernetes operator for syncing Git repositories as Kubernet
 - [Install Git API server](/docs/setup/git-apiserver/install.md). Installation instructions for Git API server.
 - [Uninstall Git API server](/docs/setup/git-apiserver/uninstall.md). Instructions for uninstallating Git API server.
 - [Upgrading Git API server](/docs/setup/git-apiserver/upgrade.md). Instructions for upgrading Git API server.
+
+## KubeCI CLI
+
+[Install KubeCI CLI](/docs/setup/cli/install.md). Installation instructions for KubeCI CLI as `kubectl` plugin.
   
 ## Developer Guide
 

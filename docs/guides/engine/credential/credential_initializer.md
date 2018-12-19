@@ -157,10 +157,12 @@ sample-workflow-xj9gl-0   0/1     Completed   0          29s
 
 ## Check Logs
 
+You can use KubeCI CLI to get logs of any step. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
+
 The `step-ls-home` prints the contents of `HOME` directory.
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-xj9gl?step=step-ls-home'
+$ kubectl ci logs sample-workflow-xj9gl --step step-ls-home -n demo
 total 8
 drwxr-xr-x    4 root     root           120 Oct 30 04:53 .
 drwxr-xr-x    4 root     root          4096 Oct 30 04:53 ..

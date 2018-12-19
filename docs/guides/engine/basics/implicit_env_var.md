@@ -108,17 +108,19 @@ sample-workflow-gwd7c-0   0/1     Completed   0          25s
 
 ## Check Logs
 
+You can use KubeCI CLI to get logs of any step. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
+
 The `step-one` and `step-two` prints the values of `HOME`, `NAMESPACE` and `WORKPLAN` environment variables.
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-gwd7c?step=step-one'
+$ kubectl ci logs sample-workflow-gwd7c --step step-one -n demo
 HOME=/kubeci/home
 NAMESPACE=default
 WORKPLAN=sample-workflow-gwd7c
 ```
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-gwd7c?step=step-two'
+$ kubectl ci logs sample-workflow-gwd7c --step step-two -n demo
 HOME=/kubeci/home
 NAMESPACE=default
 WORKPLAN=sample-workflow-gwd7c

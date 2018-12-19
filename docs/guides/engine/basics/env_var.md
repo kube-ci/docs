@@ -132,10 +132,12 @@ sample-workflow-blkh9-0   0/1     Completed   0          25s
 
 ## Check Logs
 
+You can use KubeCI CLI to get logs of any step. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
+
 The `step-one` prints the values of explicit environment variables.
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-blkh9?step=step-one'
+$ kubectl ci logs sample-workflow-blkh9 --step step-one -n demo
 ENV_ONE=one
 ENV_TWO=secret-data-two
 KEY_ONE=secret-data-one

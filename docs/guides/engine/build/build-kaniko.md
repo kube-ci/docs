@@ -159,10 +159,12 @@ sample-workflow-779ht-0   0/1     Init:2/3   0          47s
 
 ## Check Logs
 
-You can check logs of the `build-and-push` step to verify if the image has been successfully built and pushed or not.
+You can use KubeCI CLI to get logs of any step. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
+
+You can check logs of the `build-and-push` step to verify if the image has been successfully built and pushed or not. You can use KubeCI CLI to get logs of any step.
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-779ht?step=build-and-push'
+$ kubectl ci logs sample-workflow-779ht --step build-and-push -n demo
 ```
 
 ## Cleanup

@@ -211,10 +211,12 @@ status:
 
 ## Get Logs
 
+You can use KubeCI CLI to get logs of any step. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
+
 To get/stream logs of a particular step of a workplan, you need to call the `Get` API of `WorkplanLog` custom resource.
 
 ```console
-$ kubectl get --raw '/apis/extensions.kube.ci/v1alpha1/namespaces/demo/workplanlogs/sample-workflow-sg9h4?step=step-echo'
+$ kubectl ci logs sample-workflow-sg9h4 --step step-echo -n demo
 hello world
 ```
 
