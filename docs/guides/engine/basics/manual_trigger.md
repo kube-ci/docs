@@ -60,15 +60,7 @@ metadata:
   name: sample-workflow
   namespace: demo
 spec:
-  triggers:
-  - apiVersion: v1
-    kind: ConfigMap
-    resource: configmaps
-    namespace: demo
-    name: sample-config
-    onCreateOrUpdate: true
-    onDelete: false
-  serviceAccount: wf-sa
+  serviceAccount: default
   executionOrder: Serial
   allowManualTrigger: true
   steps:
@@ -137,6 +129,44 @@ kind: Trigger
 metadata:
   name: sample-trigger
   namespace: demo
+workflows:
+- sample-workflow
+```
+
+## Trigger using KubeCI CLI
+
+You can also use KubeCI CLI to trigger workflows. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
+
+**Without request:**
+
+```console
+$ kubectl ci trigger sample-workflow -n demo
+trigger.extensions.kube.ci/sample-workflow-trigger created
+```
+
+**With request:**
+
+You can specify request using `--by` flag.
+
+```yaml
+$ kubectl ci trigger sample-workflow -n demo --by "$(cat docs/examples/engine/manual-trigger/configmap.yaml)" -o yaml
+
+apiVersion: extensions.kube.ci/v1alpha1
+kind: Trigger
+metadata:
+  creationTimestamp: null
+  name: sample-workflow-trigger
+  namespace: demo
+  selfLink: /apis/extensions.kube.ci/v1alpha1/namespaces/demo/triggers/sample-workflow-trigger
+request:
+  apiVersion: v1
+  data:
+    example.property.1: hello
+    example.property.2: world
+  kind: ConfigMap
+  metadata:
+    name: sample-config
+    namespace: demo
 workflows:
 - sample-workflow
 ```

@@ -4,14 +4,6 @@ metadata:
   name: sample-workflow
   namespace: demo
 spec:
-  triggers:
-  - apiVersion: v1
-    kind: ConfigMap
-    resource: configmaps
-    namespace: demo
-    name: sample-config
-    onCreateOrUpdate: true
-    onDelete: false
   serviceAccount: wf-sa
   executionOrder: Serial
   allowManualTrigger: true

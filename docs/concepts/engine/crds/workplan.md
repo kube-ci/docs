@@ -169,6 +169,10 @@ Copied from `workflow.spec.tolerations`.
 
 Copied from `workflow.spec.resources`.
 
+### spec.manuallyTriggered
+
+When `true` indicates that the workplan was created by a manual trigger.
+
 ## Workplan Status
 
 The status section of a workplan contains enough information to describe the current phase of a workplan. It has following sections:

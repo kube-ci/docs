@@ -31,7 +31,9 @@ namespace/demo created
 
 You need to specify a service-account in `spec.serviceAccount` to ensure RBAC for the workflow. This service-account along with operator's service-account must have `list` and `watch` permissions for the resources specified in `spec.triggers`.
 
-First, create a service-account for the workflow. Then, create a cluster-role with ConfigMap `list` and `watch` permissions. Since we will populate environment variables from secret, we also need secret get permission. Now, bind the cluster-role with service-accounts of both workflow and operator.
+In this example, we are going to leave `spec.triggers` empty and trigger the workflow manually. So we don't need any of the permissions specified above. But secret get permission is required since we will populate environment variables from secret.
+
+First, create a service-account for the workflow. Then, create a cluster-role with Secret `get` permission. Now, bind the cluster-role with service-accounts of both workflow and operator.
 
 ```console
 $ kubectl apply -f ./docs/examples/engine/env-var/rbac.yaml
@@ -76,14 +78,6 @@ metadata:
   name: sample-workflow
   namespace: demo
 spec:
-  triggers:
-  - apiVersion: v1
-    kind: ConfigMap
-    resource: configmaps
-    namespace: demo
-    name: sample-config
-    onCreateOrUpdate: true
-    onDelete: false
   serviceAccount: wf-sa
   allowManualTrigger: true
   steps:
@@ -109,11 +103,11 @@ spec:
 
 ## Trigger Workflow
 
-Now trigger the workflow by creating a `Trigger` custom-resource which contains a complete ConfigMap resource inside `.request` section.
+You can use KubeCI CLI to trigger workflows. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
 
 ```console
-$ kubectl apply -f ./docs/examples/engine/env-var/trigger.yaml
-trigger.extensions.kube.ci/sample-trigger created
+$ kubectl ci trigger sample-workflow -n demo
+trigger.extensions.kube.ci/sample-workflow-trigger created
 ```
 
 Whenever a workflow is triggered, a workplan is created and respective pods are scheduled.

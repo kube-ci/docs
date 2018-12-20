@@ -12,9 +12,6 @@ metadata:
   name: wf-role
 rules:
 - apiGroups: [""]
-  resources: ["configmaps"]
-  verbs: ["list", "watch"]
-- apiGroups: [""]
   resources: ["secrets"]
   verbs: ["get"]
 ---

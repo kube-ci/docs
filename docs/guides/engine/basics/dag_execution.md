@@ -31,15 +31,7 @@ namespace/demo created
 
 You need to specify a service-account in `spec.serviceAccount` to ensure RBAC for the workflow. This service-account along with operator's service-account must have `list` and `watch` permissions for the resources specified in `spec.triggers`.
 
-First, create a service-account for the workflow. Then, create a cluster-role with ConfigMap `list` and `watch` permissions. Now, bind it with service-accounts of both workflow and operator.
-
-```console
-$ kubectl apply -f ./docs/examples/engine/dag-execution/rbac.yaml
-serviceaccount/wf-sa created
-clusterrole.rbac.authorization.k8s.io/wf-role created
-rolebinding.rbac.authorization.k8s.io/wf-role-binding created
-clusterrolebinding.rbac.authorization.k8s.io/operator-role-binding created
-```
+In this example, we are going to leave `spec.triggers` empty and trigger the workflow manually. So we don't need any of the permissions specified above. Also, we are going to use the default service account of `demo` namespace.
 
 ## Create Workflow
 
@@ -55,15 +47,7 @@ metadata:
   name: sample-workflow
   namespace: demo
 spec:
-  triggers:
-  - apiVersion: v1
-    kind: ConfigMap
-    resource: configmaps
-    namespace: demo
-    name: sample-config
-    onCreateOrUpdate: true
-    onDelete: false
-  serviceAccount: wf-sa
+  serviceAccount: default
   executionOrder: DAG
   allowManualTrigger: true
   steps:
@@ -122,13 +106,19 @@ spec:
 # dependency: 01 | 02 03 | 04 | 05 06
 ```
 
+Dependency graph for the workflow:
+
+<p align="center">
+  <img alt="DAG Execution" height="400px" src="/docs/examples/engine/dag-execution/dag-execution.svg">
+</p>
+ 
 ## Trigger Workflow
 
-Now trigger the workflow by creating a `Trigger` custom-resource which contains a complete ConfigMap resource inside `.request` section.
+You can use KubeCI CLI to trigger workflows. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
 
 ```console
-$ kubectl apply -f ./docs/examples/engine/dag-execution/trigger.yaml
-trigger.extensions.kube.ci/sample-trigger created
+$ kubectl ci trigger sample-workflow -n demo
+trigger.extensions.kube.ci/sample-workflow-trigger created
 ```
 
 Whenever a workflow is triggered, a workplan is created and respective pods are scheduled.

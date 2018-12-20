@@ -49,14 +49,14 @@ stringData:
   password: ...
 ```
 
-## Configure RBAC
+Now, create a service-account for the workflow and specify previously created secrets.
 
-You need to specify a service-account in `spec.serviceAccount` to ensure RBAC for the workflow. This service-account along with operator's service-account must have `list` and `watch` permissions for the resources specified in `spec.triggers`.
-
-Now, create a service-account for the workflow and specify previously created secret.
+```console
+$ kubectl apply -f ./docs/examples/engine/build-kaniko/service-account.yaml
+serviceaccount/wf-sa created
+```
 
 ```yaml
-# service-account for workflow
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -66,15 +66,11 @@ secrets:
 - name: docker-credential
 ```
 
-Then, create a cluster-role with ConfigMap `list` and `watch` permissions. Now, bind it with service-accounts of both workflow and operator.
+## Configure RBAC
 
-```console
-$ kubectl apply -f ./docs/examples/engine/build-kaniko/rbac.yaml  
-serviceaccount/wf-sa created
-clusterrole.rbac.authorization.k8s.io/wf-role created
-rolebinding.rbac.authorization.k8s.io/wf-role-binding created
-clusterrolebinding.rbac.authorization.k8s.io/operator-role-binding created
-```
+You need to specify a service-account in `spec.serviceAccount` to ensure RBAC for the workflow. This service-account along with operator's service-account must have `list` and `watch` permissions for the resources specified in `spec.triggers`.
+
+In this example, we are going to leave `spec.triggers` empty and trigger the workflow manually. So we don't need any of the permissions specified above.
 
 ## Create Workflow
 
@@ -90,14 +86,6 @@ metadata:
   name: sample-workflow
   namespace: demo
 spec:
-  triggers:
-  - apiVersion: v1
-    kind: ConfigMap
-    resource: configmaps
-    namespace: demo
-    name: sample-config
-    onCreateOrUpdate: true
-    onDelete: false
   serviceAccount: wf-sa
   executionOrder: Serial
   allowManualTrigger: true

@@ -5,20 +5,18 @@ metadata:
   namespace: demo
 spec:
   serviceAccount: default
-  executionOrder: Serial
+  executionOrder: Parallel
   allowManualTrigger: true
   steps:
-  - name: step-one
+  - name: step-echo
     image: alpine
     commands:
-    - sh
+    - echo
     args:
-    - -c
-    - echo HOME=$HOME; echo NAMESPACE=$NAMESPACE; echo WORKPLAN=$WORKPLAN;
-  - name: step-two
+    - hello world
+  - name: step-wait
     image: alpine
     commands:
-    - sh
+    - sleep
     args:
-    - -c
-    - echo HOME=$HOME; echo NAMESPACE=$NAMESPACE; echo WORKPLAN=$WORKPLAN;
+    - 10s

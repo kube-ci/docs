@@ -80,11 +80,47 @@ spec:
 
 ## Trigger Workflow
 
-Now trigger the workflow by creating a `Trigger` custom-resource which contains a complete ConfigMap resource inside `.request` section.
+Create a ConfigMap with name `sample-config` to trigger the workflow.
 
 ```console
-$ kubectl apply -f ./docs/examples/engine/json-path/trigger.yaml
-trigger.extensions.kube.ci/sample-trigger created
+$ kubectl apply -f ./docs/examples/engine/hello-world/configmap.yaml
+configmap/sample-config created
+```
+
+```yaml
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: sample-config
+  namespace: demo
+data:
+  example.property.1: hello
+  example.property.2: world
+```
+
+You can also use KubeCI CLI to manually trigger workflows with request object. In order to use KubeCI CLI as `kubectl` plugin follow the steps [here](/docs/setup/cli/install.md).
+
+```yaml
+$ kubectl ci trigger sample-workflow -n demo --by "$(cat docs/examples/engine/json-path/configmap.yaml)" -o yaml
+
+apiVersion: extensions.kube.ci/v1alpha1
+kind: Trigger
+metadata:
+  creationTimestamp: null
+  name: sample-workflow-trigger
+  namespace: demo
+  selfLink: /apis/extensions.kube.ci/v1alpha1/namespaces/demo/triggers/sample-workflow-trigger
+request:
+  apiVersion: v1
+  data:
+    example.property.1: hello
+    example.property.2: world
+  kind: ConfigMap
+  metadata:
+    name: sample-config
+    namespace: demo
+workflows:
+- sample-workflow
 ```
 
 Whenever a workflow is triggered, a workplan is created and respective pods are scheduled.
