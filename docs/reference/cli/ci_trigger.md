@@ -1,79 +1,37 @@
 ---
-title: Install KubeCI CLI
-description: KubeCI CLI Install
+title: Ci Trigger
 menu:
   product_kubeci_0.1.0:
-    identifier: install-cli
-    name: Install
-    parent: setup-cli
-    weight: 10
+    identifier: ci-trigger
+    name: Ci Trigger
+    parent: reference-cli
 product_name: kubeci
 menu_name: product_kubeci_0.1.0
-section_menu_id: setup
+section_menu_id: reference
 ---
+## ci trigger
 
-# Installation Guide
+Trigger workflow
 
-In order to install KubeCI CLI as [kubectl-plugin](https://kubernetes.io/docs/tasks/extend-kubectl/kubectl-plugins/), download the `kubetl-ci` binary and move it anywhere on you PATH.
+### Synopsis
 
-<ul class="nav nav-tabs" id="installerTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="mac-tab" data-toggle="tab" href="#mac" role="tab" aria-controls="mac" aria-selected="true">macOS</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="linux-tab" data-toggle="tab" href="#linux" role="tab" aria-controls="linux" aria-selected="false">Linux</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="windows-tab" data-toggle="tab" href="#windows" role="tab" aria-controls="windows" aria-selected="false">Windows</a>
-  </li>
-</ul>
-<div class="tab-content" id="installerTabContent">
-  <div class="tab-pane fade show active" id="mac" role="tabpanel" aria-labelledby="mac-tab">
+Trigger workflow
 
-## macOS
-
-```console
-$ wget -O kubectl-ci https://github.com/kube-ci/cli/releases/download/0.1.0/kubectl-ci-darwin-amd64 \
-   && chmod +x kubectl-ci \
-   && sudo mv kubectl-ci /usr/local/bin/
+```
+ci trigger [flags]
 ```
 
-</div>
-<div class="tab-pane fade" id="linux" role="tabpanel" aria-labelledby="linux-tab">
+### Options
 
-## Linux
-
-```console
-$ wget -O kubectl-ci https://github.com/kube-ci/cli/releases/download/0.1.0/kubectl-ci-linux-amd64 \
-   && chmod +x kubectl-ci \
-   && sudo mv kubectl-ci /usr/local/bin/
+```
+      --by string       Contents of request object.
+  -h, --help            help for trigger
+  -o, --output string   Output format. One of: json|yaml
 ```
 
-</div>
-<div class="tab-pane fade" id="windows" role="tabpanel" aria-labelledby="windows-tab">
+### Options inherited from parent commands
 
-## Windows
-
-1. Download the latest release v0.1.0 from this [link](https://github.com/kube-ci/cli/releases/download/0.1.0/kubectl-ci.exe).
-2. Add the binary in to your PATH.
-
-</div>
-
-Now, check installation using:
-
-```console
-$ kubectl ci -h
-KubeCI by AppsCode - Kubernetes Native Workflow Engine
-
-Usage:
-  ci [command]
-
-Available Commands:
-  help        Help about any command
-  logs        Get workplan logs
-  version     Prints binary version number.
-
-Flags:
+```
       --alsologtostderr                  log to standard error as well as files
       --analytics                        Send analytical events to Google Analytics (default true)
       --as string                        Username to impersonate for the operation
@@ -84,7 +42,6 @@ Flags:
       --client-key string                Path to a client key file for TLS
       --cluster string                   The name of the kubeconfig cluster to use
       --context string                   The name of the kubeconfig context to use
-  -h, --help                             help for ci
       --insecure-skip-tls-verify         If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
       --kubeconfig string                Path to the kubeconfig file to use for CLI requests.
       --log-backtrace-at traceLocation   when logging hits line file:N, emit a stack trace (default :0)
@@ -99,6 +56,9 @@ Flags:
       --user string                      The name of the kubeconfig user to use
   -v, --v Level                          log level for V logs
       --vmodule moduleSpec               comma-separated list of pattern=N settings for file-filtered logging
-
-Use "ci [command] --help" for more information about a command.
 ```
+
+### SEE ALSO
+
+* [ci](/docs/reference/cli/ci.md)	 - KubeCI by AppsCode - Kubernetes Native Workflow Engine
+

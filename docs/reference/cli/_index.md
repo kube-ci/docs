@@ -5,7 +5,7 @@ menu:
   product_kubeci_0.1.0:
     identifier: reference-cli
     name: KubeCI CLI
-    weight: 10
+    weight: 30
     parent: reference
 menu_name: product_kubeci_0.1.0
 ---

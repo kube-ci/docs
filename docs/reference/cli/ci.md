@@ -29,7 +29,7 @@ KubeCI by AppsCode - Kubernetes Native Workflow Engine
       --analytics                        Send analytical events to Google Analytics (default true)
       --as string                        Username to impersonate for the operation
       --as-group stringArray             Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
-      --cache-dir string                 Default HTTP cache directory (default "/home/tamal/.kube/http-cache")
+      --cache-dir string                 Default HTTP cache directory (default "$HOME/.kube/http-cache")
       --certificate-authority string     Path to a cert file for the certificate authority
       --client-certificate string        Path to a client certificate file for TLS
       --client-key string                Path to a client key file for TLS
@@ -55,5 +55,6 @@ KubeCI by AppsCode - Kubernetes Native Workflow Engine
 ### SEE ALSO
 
 * [ci logs](/docs/reference/cli/ci_logs.md)	 - Get workplan logs
+* [ci trigger](/docs/reference/cli/ci_trigger.md)	 - Trigger workflow
 * [ci version](/docs/reference/cli/ci_version.md)	 - Prints binary version number.
 
