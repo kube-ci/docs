@@ -44,6 +44,5 @@ Kubeci-engine by AppsCode
 * [kubeci-engine credential](/docs/reference/engine/kubeci-engine_credential.md)	 - Run credential initializer
 * [kubeci-engine run](/docs/reference/engine/kubeci-engine_run.md)	 - Launch kubeci-engine
 * [kubeci-engine version](/docs/reference/engine/kubeci-engine_version.md)	 - Prints binary version number.
-* [kubeci-engine workplan-logs](/docs/reference/engine/kubeci-engine_workplan-logs.md)	 - Get workplan logs
 * [kubeci-engine workplan-viewer](/docs/reference/engine/kubeci-engine_workplan-viewer.md)	 - Start workplan-viewer server
 
