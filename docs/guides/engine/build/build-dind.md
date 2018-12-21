@@ -113,7 +113,7 @@ spec:
     volumeMounts:
     - name: dind-storage
       mountPath: /var/lib/docker
-    dependency:
+    requires:
     - clone
   - name: build-and-push
     image: docker:18.09
@@ -122,7 +122,7 @@ spec:
     args:
     - -c
     - docker build -t kubeci/kubeci-gpig:dind .; docker push kubeci/kubeci-gpig:dind
-    dependency:
+    requires:
     - clone
 ```
 

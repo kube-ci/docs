@@ -65,7 +65,7 @@ spec:
     args:
     - -c
     - date; sleep 5s; date
-    dependency:
+    requires:
     - step-01
   - name: step-03
     image: alpine
@@ -74,7 +74,7 @@ spec:
     args:
     - -c
     - date; sleep 5s; date
-    dependency:
+    requires:
     - step-01
   - name: step-04
     image: alpine
@@ -83,7 +83,7 @@ spec:
     args:
     - -c
     - date; sleep 5s; date
-    dependency:
+    requires:
     - step-03
   - name: step-05
     image: alpine
@@ -92,7 +92,7 @@ spec:
     args:
     - -c
     - date; sleep 5s; date
-    dependency:
+    requires:
     - step-04
   - name: step-06
     image: alpine
@@ -101,7 +101,7 @@ spec:
     args:
     - -c
     - date; sleep 5s; date
-    dependency:
+    requires:
     - step-04
 # dependency: 01 | 02 03 | 04 | 05 06
 ```
@@ -172,7 +172,7 @@ spec:
       - date; sleep 5s; date
       commands:
       - sh
-      dependency:
+      requires:
       - step-01
       image: alpine
       name: step-02
@@ -181,7 +181,7 @@ spec:
       - date; sleep 5s; date
       commands:
       - sh
-      dependency:
+      requires:
       - step-01
       image: alpine
       name: step-03
@@ -199,7 +199,7 @@ spec:
       - date; sleep 5s; date
       commands:
       - sh
-      dependency:
+      requires:
       - step-04
       image: alpine
       name: step-05
@@ -208,7 +208,7 @@ spec:
       - date; sleep 5s; date
       commands:
       - sh
-      dependency:
+      requires:
       - step-04
       image: alpine
       name: step-06
@@ -218,7 +218,7 @@ spec:
       - date; sleep 5s; date
       commands:
       - sh
-      dependency:
+      requires:
       - step-03
       image: alpine
       name: step-04
