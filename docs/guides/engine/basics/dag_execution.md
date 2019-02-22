@@ -2,13 +2,13 @@
 title: DAG | Guides
 description: DAG Execution
 menu:
-  product_kubeci_0.1.0:
+  docs_0.1.0:
     identifier: guides-dag
     name: DAG Execution
     parent: guides-basics
     weight: 3
 product_name: kubeci
-menu_name: product_kubeci_0.1.0
+menu_name: docs_0.1.0
 section_menu_id: guides
 ---
 

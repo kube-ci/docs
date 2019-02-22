@@ -1,12 +1,12 @@
 ---
 title: Ci Logs
 menu:
-  product_kubeci_0.1.0:
+  docs_0.1.0:
     identifier: ci-logs
     name: Ci Logs
     parent: reference-cli
 product_name: kubeci
-menu_name: product_kubeci_0.1.0
+menu_name: docs_0.1.0
 section_menu_id: reference
 ---
 ## ci logs

@@ -1,12 +1,12 @@
 ---
 title: Kubeci-Engine Workplan-Viewer
 menu:
-  product_kubeci_0.1.0:
+  docs_0.1.0:
     identifier: kubeci-engine-workplan-viewer
     name: Kubeci-Engine Workplan-Viewer
     parent: reference-engine
 product_name: kubeci
-menu_name: product_kubeci_0.1.0
+menu_name: docs_0.1.0
 section_menu_id: reference
 ---
 ## kubeci-engine workplan-viewer

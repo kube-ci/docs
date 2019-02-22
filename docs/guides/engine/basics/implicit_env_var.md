@@ -2,13 +2,13 @@
 title: Implicit Environment Variables | Guides
 description: Implicit Environment Variables
 menu:
-  product_kubeci_0.1.0:
+  docs_0.1.0:
     identifier: guides-implicit-env
     name: Implicit Environment Variables
     parent: guides-basics
     weight: 6
 product_name: kubeci
-menu_name: product_kubeci_0.1.0
+menu_name: docs_0.1.0
 section_menu_id: guides
 ---
 

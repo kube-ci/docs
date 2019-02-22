@@ -2,13 +2,13 @@
 title: Table of Contents | Setup
 description: Table of Contents | Setup
 menu:
-  product_kubeci_0.1.0:
+  docs_0.1.0:
     identifier: setup-readme
     name: Readme
     parent: setup
     weight: -1
 product_name: kubeci
-menu_name: product_kubeci_0.1.0
+menu_name: docs_0.1.0
 section_menu_id: setup
 url: /products/kubeci/0.1.0/setup/
 aliases:

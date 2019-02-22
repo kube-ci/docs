@@ -2,13 +2,13 @@
 title: IMG Build | Guides
 description: IMG Build
 menu:
-  product_kubeci_0.1.0:
+  docs_0.1.0:
     identifier: guides-img
     name: IMG Build
     parent: guides-build
     weight: 2
 product_name: kubeci
-menu_name: product_kubeci_0.1.0
+menu_name: docs_0.1.0
 section_menu_id: guides
 ---
 
