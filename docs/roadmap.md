@@ -7,7 +7,6 @@ menu:
     name: Roadmap
     parent: welcome
     weight: 15
-product_name: kubeci
 menu_name: docs_0.1.0
 section_menu_id: welcome
 url: /docs/0.1.0/welcome/roadmap/

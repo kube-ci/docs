@@ -6,7 +6,6 @@ menu:
     name: What is Git API Server
     parent: concepts
     weight: 30
-product_name: kubeci
 menu_name: docs_0.1.0
 section_menu_id: concepts
 ---

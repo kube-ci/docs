@@ -7,7 +7,6 @@ menu:
     name: Upgrade
     parent: setup-git-apiserver
     weight: 30
-product_name: kubeci
 menu_name: docs_0.1.0
 section_menu_id: setup
 ---

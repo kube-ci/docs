@@ -7,7 +7,6 @@ menu:
     name: Github Pull Request
     parent: guides-walk-through
     weight: 1
-product_name: kubeci
 menu_name: docs_0.1.0
 section_menu_id: guides
 ---

@@ -7,7 +7,6 @@ menu:
     name: Github Private Repo
     parent: guides-repositories
     weight: 3
-product_name: kubeci
 menu_name: docs_0.1.0
 section_menu_id: guides
 ---

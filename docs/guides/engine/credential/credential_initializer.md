@@ -7,7 +7,6 @@ menu:
     name: Docker and Git
     parent: guides-credential
     weight: 1
-product_name: kubeci
 menu_name: docs_0.1.0
 section_menu_id: guides
 ---

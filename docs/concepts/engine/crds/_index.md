@@ -7,6 +7,5 @@ menu:
     name: KubeCI Engine CRDs
     parent: concepts
     weight: 40
-product_name: kubeci
 menu_name: docs_0.1.0
 ---

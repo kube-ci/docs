@@ -7,6 +7,5 @@ menu:
     name: Git API Server CRDs
     parent: concepts
     weight: 50
-product_name: kubeci
 menu_name: docs_0.1.0
 ---
