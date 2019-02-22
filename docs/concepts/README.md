@@ -9,9 +9,9 @@ menu:
 product_name: kubeci
 menu_name: docs_0.1.0
 section_menu_id: concepts
-url: /products/kubeci/0.1.0/concepts/
+url: /docs/0.1.0/concepts/
 aliases:
-  - /products/kubeci/0.1.0/concepts/README/
+  - /docs/0.1.0/concepts/README/
 ---
 
 # Concepts

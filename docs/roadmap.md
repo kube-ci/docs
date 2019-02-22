@@ -10,9 +10,9 @@ menu:
 product_name: kubeci
 menu_name: docs_0.1.0
 section_menu_id: welcome
-url: /products/kubeci/0.1.0/welcome/roadmap/
+url: /docs/0.1.0/welcome/roadmap/
 aliases:
-  - /products/kubeci/0.1.0/roadmap/
+  - /docs/0.1.0/roadmap/
 ---
 
 # Project Status

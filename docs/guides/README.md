@@ -10,9 +10,9 @@ menu:
 product_name: kubeci
 menu_name: docs_0.1.0
 section_menu_id: guides
-url: /products/kubeci/0.1.0/guides/
+url: /docs/0.1.0/guides/
 aliases:
-  - /products/kubeci/0.1.0/guides/README/
+  - /docs/0.1.0/guides/README/
 ---
 
 # Guides

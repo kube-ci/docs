@@ -10,9 +10,9 @@ menu:
 product_name: kubeci
 menu_name: docs_0.1.0
 section_menu_id: welcome
-url: /products/kubeci/0.1.0/welcome/contributing/
+url: /docs/0.1.0/welcome/contributing/
 aliases:
-  - /products/kubeci/0.1.0/CONTRIBUTING/
+  - /docs/0.1.0/CONTRIBUTING/
 ---
 
 # Contribution Guidelines
@@ -38,7 +38,7 @@ please feel free to send a Pull Request.
 
 ## Getting Help
 
-If you have a question about KubeCI engine or having problem using it, you can contact us on the [AppsCode Slack team](https://appscode.slack.com/messages/C8NCX6N23/details/) channel `#kubeci`. Follow [this link](https://slack.appscode.com) to get invitation to our Slack channel.
+If you have a question about KubeCI engine or having problem using it, you can contact us on the [AppsCode Slack team](https://appscode.slack.com/messages/kubeci/) channel `#kubeci`. Follow [this link](https://slack.appscode.com) to get invitation to our Slack channel.
 
 ## Bugs/Feature request
 

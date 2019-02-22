@@ -10,10 +10,10 @@ menu:
 product_name: kubeci
 menu_name: docs_0.1.0
 section_menu_id: welcome
-url: /products/kubeci/0.1.0/welcome/
+url: /docs/0.1.0/welcome/
 aliases:
-  - /products/kubeci/0.1.0/
-  - /products/kubeci/0.1.0/README/
+  - /docs/0.1.0/
+  - /docs/0.1.0/README/
 ---
 
 # KubeCI
