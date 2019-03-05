@@ -48,5 +48,5 @@ Concepts help you learn about the different parts of the KubeCI and the abstract
   - [Tag](/docs/concepts/git-apiserver/crds/tag.md). Introduce concept of `Tag` to represent tags of git repositories.
   - [PullRequest](/docs/concepts/git-apiserver/crds/pull_request.md). Introduce concept of `PullRequest` to represent pull-requests of remote git repositories.
   - [GithubEvent](/docs/concepts/git-apiserver/crds/github_event.md). Introduce concept of `GithubEvent` that represents Github events.
-  
+
 </div>

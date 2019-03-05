@@ -32,19 +32,20 @@ ci trigger [flags]
 
 ```
       --alsologtostderr                  log to standard error as well as files
-      --analytics                        Send analytical events to Google Analytics (default true)
       --as string                        Username to impersonate for the operation
       --as-group stringArray             Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
-      --cache-dir string                 Default HTTP cache directory (default "$HOME/.kube/http-cache")
+      --cache-dir string                 Default HTTP cache directory (default "/home/tamal/.kube/http-cache")
       --certificate-authority string     Path to a cert file for the certificate authority
       --client-certificate string        Path to a client certificate file for TLS
       --client-key string                Path to a client key file for TLS
       --cluster string                   The name of the kubeconfig cluster to use
       --context string                   The name of the kubeconfig context to use
+      --enable-analytics                 Send analytical events to Google Analytics (default true)
       --insecure-skip-tls-verify         If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure
       --kubeconfig string                Path to the kubeconfig file to use for CLI requests.
       --log-backtrace-at traceLocation   when logging hits line file:N, emit a stack trace (default :0)
       --log-dir string                   If non-empty, write log files in this directory
+      --log-flush-frequency duration     Maximum number of seconds between log flushes (default 5s)
       --logtostderr                      log to standard error instead of files
       --match-server-version             Require server version to match client version
   -n, --namespace string                 If present, the namespace scope for this CLI request
