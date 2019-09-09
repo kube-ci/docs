@@ -2,12 +2,12 @@
 title: Kaniko Build | Guides
 description: Kaniko Build
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: guides-kaniko
     name: Kaniko Build
     parent: guides-build
     weight: 3
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: guides
 ---
 

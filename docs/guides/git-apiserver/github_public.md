@@ -2,12 +2,12 @@
 title: Github Public Repo | Guides
 description: Github Public Repo
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: guides-github-public
     name: Github Public Repo
     parent: guides-repositories
     weight: 2
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: guides
 ---
 

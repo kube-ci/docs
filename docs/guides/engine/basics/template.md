@@ -2,12 +2,12 @@
 title: Workflow Template | Guides
 description: Workflow Template
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: guides-template
     name: Workflow Template
     parent: guides-basics
     weight: 4
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: guides
 ---
 

@@ -2,12 +2,12 @@
 title: Github Private Repo | Guides
 description: Github Private Repo
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: guides-github-private
     name: Github Private Repo
     parent: guides-repositories
     weight: 3
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: guides
 ---
 

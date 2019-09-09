@@ -2,12 +2,12 @@
 title: Release | KubeCI
 description: KubeCI Release
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: release
     name: Release
     parent: developer-guide
     weight: 15
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: setup
 ---
 

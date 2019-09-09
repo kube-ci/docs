@@ -1,11 +1,11 @@
 ---
 title: Kubeci-Engine Version
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: kubeci-engine-version
     name: Kubeci-Engine Version
     parent: reference-engine
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: reference
 ---
 ## kubeci-engine version

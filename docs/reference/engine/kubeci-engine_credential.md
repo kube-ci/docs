@@ -1,11 +1,11 @@
 ---
 title: Kubeci-Engine Credential
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: kubeci-engine-credential
     name: Kubeci-Engine Credential
     parent: reference-engine
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: reference
 ---
 ## kubeci-engine credential

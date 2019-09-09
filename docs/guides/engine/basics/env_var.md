@@ -2,12 +2,12 @@
 title: Environment Variables | Guides
 description: Environment Variables
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: guides-env-var
     name: Environment Variables
     parent: guides-basics
     weight: 7
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: guides
 ---
 

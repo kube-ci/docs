@@ -1,12 +1,12 @@
 ---
 title: Workplan | CRD
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: workplan-crd
     name: Workplan
     parent: kubeci-crds-engine
     weight: 15
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: concepts
 ---
 

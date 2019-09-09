@@ -2,12 +2,12 @@
 title: Docker and Git | Guides
 description: Docker and Git
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: guides-docker-git
     name: Docker and Git
     parent: guides-credential
     weight: 1
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: guides
 ---
 

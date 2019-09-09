@@ -1,16 +1,16 @@
 ---
 title: Kubeci-Engine
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: kubeci-engine
     name: Kubeci-Engine
     parent: reference-engine
     weight: 0
 
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: reference
 aliases:
-  - /docs/0.1.0/reference/engine/
+  - /docs/v0.1.0/reference/engine/
 
 ---
 ## kubeci-engine

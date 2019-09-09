@@ -2,12 +2,12 @@
 title: Dind Build | Guides
 description: Dind Build
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: guides-dind
     name: Dind Build
     parent: guides-build
     weight: 1
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: guides
 ---
 

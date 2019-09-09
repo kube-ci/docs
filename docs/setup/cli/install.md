@@ -2,12 +2,12 @@
 title: Install KubeCI CLI
 description: KubeCI CLI Install
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: install-cli
     name: Install
     parent: setup-cli
     weight: 10
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: setup
 ---
 
@@ -32,7 +32,7 @@ In order to install KubeCI CLI as [kubectl-plugin](https://kubernetes.io/docs/ta
 ## macOS
 
 ```console
-$ wget -O kubectl-ci https://github.com/kube-ci/cli/releases/download/0.1.0/kubectl-ci-darwin-amd64 \
+$ wget -O kubectl-ci https://github.com/kube-ci/cli/releases/download/v0.1.0/kubectl-ci-darwin-amd64 \
    && chmod +x kubectl-ci \
    && sudo mv kubectl-ci /usr/local/bin/
 ```
@@ -43,7 +43,7 @@ $ wget -O kubectl-ci https://github.com/kube-ci/cli/releases/download/0.1.0/kube
 ## Linux
 
 ```console
-$ wget -O kubectl-ci https://github.com/kube-ci/cli/releases/download/0.1.0/kubectl-ci-linux-amd64 \
+$ wget -O kubectl-ci https://github.com/kube-ci/cli/releases/download/v0.1.0/kubectl-ci-linux-amd64 \
    && chmod +x kubectl-ci \
    && sudo mv kubectl-ci /usr/local/bin/
 ```
@@ -53,7 +53,7 @@ $ wget -O kubectl-ci https://github.com/kube-ci/cli/releases/download/0.1.0/kube
 
 ## Windows
 
-1. Download the latest release v0.1.0 from this [link](https://github.com/kube-ci/cli/releases/download/0.1.0/kubectl-ci.exe).
+1. Download the latest release vv0.1.0 from this [link](https://github.com/kube-ci/cli/releases/download/v0.1.0/kubectl-ci.exe).
 2. Add the binary in to your PATH.
 
 </div>

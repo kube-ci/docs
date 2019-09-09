@@ -2,16 +2,16 @@
 title: Support | KubeCI
 description: Support
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: support-kubeci
     name: Support
     parent: welcome
     weight: 25
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: welcome
-url: /docs/0.1.0/welcome/support/
+url: /docs/v0.1.0/welcome/support/
 aliases:
-  - /docs/0.1.0/support/
+  - /docs/v0.1.0/support/
 ---
 
 # Support

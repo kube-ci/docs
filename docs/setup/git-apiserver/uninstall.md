@@ -2,12 +2,12 @@
 title: Uninstall Git API Server
 description: Git API Server Uninstall
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: uninstall-git-apiserver
     name: Uninstall
     parent: setup-git-apiserver
     weight: 20
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: setup
 ---
 
@@ -16,7 +16,7 @@ section_menu_id: setup
 To uninstall Git API server, run the following command:
 
 ```console
-$ curl -fsSL https://raw.githubusercontent.com/kube-ci/git-apiserver/0.1.0/hack/deploy/install.sh \
+$ curl -fsSL https://raw.githubusercontent.com/kube-ci/git-apiserver/v0.1.0/hack/deploy/install.sh \
     | bash -s -- --uninstall [--namespace=NAMESPACE]
 
 validatingwebhookconfiguration.admissionregistration.k8s.io "admission.git.kube.ci" deleted

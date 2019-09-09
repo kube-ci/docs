@@ -2,12 +2,12 @@
 title: Status and Logs | Guides
 description: Status and Logs
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: guides-logs
     name: Status and Logs
     parent: guides-cli
     weight: 1
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: guides
 ---
 

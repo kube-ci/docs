@@ -2,17 +2,17 @@
 title: Welcome | KubeCI
 description: Welcome to KubeCI
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: readme-kubeci
     name: Readme
     parent: welcome
     weight: -1
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: welcome
-url: /docs/0.1.0/welcome/
+url: /docs/v0.1.0/welcome/
 aliases:
-  - /docs/0.1.0/
-  - /docs/0.1.0/README/
+  - /docs/v0.1.0/
+  - /docs/v0.1.0/README/
 ---
 
 # KubeCI

@@ -1,12 +1,12 @@
 ---
 title: Overview | KubeCI Engine
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: concepts-overview-engine
     name: What is KubeCI
     parent: concepts
     weight: 20
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: concepts
 ---
 

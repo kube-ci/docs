@@ -2,12 +2,12 @@
 title: Serial Execution | Guides
 description: Serial Execution
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: guides-serial
     name: Serial Execution
     parent: guides-basics
     weight: 1
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: guides
 ---
 

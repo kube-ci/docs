@@ -1,11 +1,11 @@
 ---
 title: Ci Trigger
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: ci-trigger
     name: Ci Trigger
     parent: reference-cli
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: reference
 ---
 ## ci trigger

@@ -2,12 +2,12 @@
 title: Install KubeCI
 description: KubeCI Install
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: install-engine
     name: Install
     parent: setup-engine
     weight: 10
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: setup
 ---
 
@@ -31,7 +31,7 @@ KubeCI engine can be installed via a script or as a Helm chart.
 To install KubeCI engine in your Kubernetes cluster, run the following command:
 
 ```console
-$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/0.1.0/hack/deploy/install.sh | bash
+$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/v0.1.0/hack/deploy/install.sh | bash
 ```
 
 After successful installation, you should have a `kubeci-engine-***` pod running in the `kube-system` namespace.
@@ -43,10 +43,10 @@ kubeci-engine-846d47f489-jrb58       1/1       Running   0          48s
 
 #### Customizing Installer
 
-The installer script and associated yaml files can be found in the [/hack/deploy](https://github.com/kube-ci/engine/tree/0.1.0/hack/deploy) folder. You can see the full list of flags available to installer using `-h` flag.
+The installer script and associated yaml files can be found in the [/hack/deploy](https://github.com/kube-ci/engine/tree/v0.1.0/hack/deploy) folder. You can see the full list of flags available to installer using `-h` flag.
 
 ```console
-$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/0.1.0/hack/deploy/install.sh | bash -s -- -h
+$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/v0.1.0/hack/deploy/install.sh | bash -s -- -h
 kubeci-engine.sh - install kubeci-engine operator
 
 kubeci-engine.sh [options]
@@ -69,7 +69,7 @@ options:
 If you would like to run KubeCI engine operator pod in `master` instances, pass the `--run-on-master` flag:
 
 ```console
-$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/0.1.0/hack/deploy/install.sh \
+$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/v0.1.0/hack/deploy/install.sh \
     | bash -s -- --run-on-master [--rbac]
 ```
 
@@ -77,7 +77,7 @@ KubeCI engine operator will be installed in a `kube-system` namespace by default
 
 ```console
 $ kubectl create namespace kubeci-engine
-$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/0.1.0/hack/deploy/install.sh \
+$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/v0.1.0/hack/deploy/install.sh \
     | bash -s -- --namespace=kubeci-engine [--run-on-master] [--rbac]
 ```
 
@@ -89,33 +89,33 @@ To pass the address of your private registry and optionally a image pull secret 
 
 ```console
 $ kubectl create namespace kubeci-engine
-$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/0.1.0/hack/deploy/install.sh \
+$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/v0.1.0/hack/deploy/install.sh \
     | bash -s -- --docker-registry=MY_REGISTRY [--image-pull-secret=SECRET_NAME] [--rbac]
 ```
 
 KubeCI engine implements [validating admission webhooks](https://kubernetes.io/docs/admin/admission-controllers/#validatingadmissionwebhook-alpha-in-18-beta-in-19) to validate KubeCI engine CRDs. This is enabled by default for Kubernetes 1.9.0 or later releases. To disable this feature, pass the `--enable-validating-webhook=false` flag.
 
 ```console
-$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/0.1.0/hack/deploy/install.sh \
+$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/v0.1.0/hack/deploy/install.sh \
     | bash -s -- --enable-validating-webhook=false [--rbac]
 ```
 
-KubeCI engine 0.1.0 or later releases can use status sub resource for CustomResourceDefinitions. This is enabled by default for Kubernetes 1.11.0 or later releases. To disable this feature, pass the `--enable-status-subresource=false` flag.
+KubeCI engine v0.1.0 or later releases can use status sub resource for CustomResourceDefinitions. This is enabled by default for Kubernetes 1.11.0 or later releases. To disable this feature, pass the `--enable-status-subresource=false` flag.
 
 </div>
 <div class="tab-pane fade" id="helm" role="tabpanel" aria-labelledby="helm-tab">
 
 ## Using Helm
-KubeCI engine can be installed via [Helm](https://helm.sh/) using the [chart](https://github.com/kube-ci/engine/tree/0.1.0/chart/kubeci-engine) from [AppsCode Charts Repository](https://github.com/appscode/charts). To install the chart with the release name `my-release`:
+KubeCI engine can be installed via [Helm](https://helm.sh/) using the [chart](https://github.com/kube-ci/engine/tree/v0.1.0/chart/kubeci-engine) from [AppsCode Charts Repository](https://github.com/appscode/charts). To install the chart with the release name `my-release`:
 
 ```console
 $ helm repo add appscode https://charts.appscode.com/stable/
 $ helm repo update
 $ helm search appscode/kubeci-engine
 NAME            CHART VERSION APP VERSION DESCRIPTION
-appscode/kubeci-engine  0.1.0    0.1.0  KubeCI engine by AppsCode - Kuberenetes native CI system
+appscode/kubeci-engine  v0.1.0    v0.1.0  KubeCI engine by AppsCode - Kuberenetes native CI system
 
-$ helm install appscode/kubeci-engine --name kubeci-engine --version 0.1.0 --namespace kube-system
+$ helm install appscode/kubeci-engine --name kubeci-engine --version v0.1.0 --namespace kube-system
 ```
 
 To see the detailed configuration options, visit [here](https://github.com/kube-ci/engine/tree/master/chart/kubeci-engine).
@@ -208,12 +208,12 @@ $ POD_NAMESPACE=kube-system
 $ POD_NAME=$(kubectl get pods -n $POD_NAMESPACE -l app=kubeci-engine -o jsonpath={.items[0].metadata.name})
 $ kubectl exec -it $POD_NAME -c operator -n $POD_NAMESPACE kubeci-engine version
 
-Version = 0.1.0
+Version = v0.1.0
 VersionStrategy = tag
 Os = alpine
 Arch = amd64
 CommitHash = 85b0f16ab1b915633e968aac0ee23f877808ef49
-GitBranch = release-0.1.0
-GitTag = 0.1.0
+GitBranch = release-v0.1.0
+GitTag = v0.1.0
 CommitTimestamp = 2018-10-10T05:24:23
 ```

@@ -2,12 +2,12 @@
 title: Uninstall KubeCI Engine
 description: KubeCI Engine Uninstall
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: uninstall-engine
     name: Uninstall
     parent: setup-engine
     weight: 20
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: setup
 ---
 
@@ -16,7 +16,7 @@ section_menu_id: setup
 To uninstall KubeCI engine, run the following command:
 
 ```console
-$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/0.1.0/hack/deploy/install.sh \
+$ curl -fsSL https://raw.githubusercontent.com/kube-ci/engine/v0.1.0/hack/deploy/install.sh \
     | bash -s -- --uninstall [--namespace=NAMESPACE]
 
 validatingwebhookconfiguration.admissionregistration.k8s.io "validators.engine.kube.ci" deleted

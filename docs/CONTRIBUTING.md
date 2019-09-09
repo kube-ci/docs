@@ -2,16 +2,16 @@
 title: Contributing | KubeCI
 description: Contributing
 menu:
-  docs_0.1.0:
+  docs_v0.1.0:
     identifier: contributing-kubeci
     name: Contributing
     parent: welcome
     weight: 10
-menu_name: docs_0.1.0
+menu_name: docs_v0.1.0
 section_menu_id: welcome
-url: /docs/0.1.0/welcome/contributing/
+url: /docs/v0.1.0/welcome/contributing/
 aliases:
-  - /docs/0.1.0/CONTRIBUTING/
+  - /docs/v0.1.0/CONTRIBUTING/
 ---
 
 # Contribution Guidelines
